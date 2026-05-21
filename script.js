@@ -1,16 +1,12 @@
 // Dark theme toggle
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('.theme-icon');
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
+if (localStorage.getItem('theme') === 'dark') {
   document.body.classList.add('dark');
-  themeIcon.textContent = '☀️';
 }
 
 themeToggle.addEventListener('click', () => {
   const isDark = document.body.classList.toggle('dark');
-  themeIcon.textContent = isDark ? '☀️' : '🌙';
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 

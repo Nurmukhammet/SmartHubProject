@@ -25,20 +25,37 @@
     </div>
   </a>
 
-  <nav id="mainNav">
-    <a href="#home" class="nav-home active">Главная</a>
-    <a href="#about">Учебная Программа</a>
-    <a href="#achievements">Достижения</a>
-    <a href="#reviews">Отзывы</a>
-    <a href="#contacts">Контакты</a>
-  </nav>
+  <div class="header-right">
+    <nav id="mainNav">
+      <a href="#home" class="nav-home active">Главная</a>
+      <a href="#about">Учебная Программа</a>
+      <a href="#achievements">Достижения</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
 
-  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Тёмная тема">
-    <span class="theme-icon">🌙</span>
-  </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Тёмная тема">
+      <!-- Moon icon (light mode) -->
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <!-- Sun icon (dark mode) -->
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </button>
 
-  <div class="burger" aria-label="Меню" role="button" tabindex="0">
-    <span></span><span></span><span></span>
+    <div class="burger" aria-label="Меню" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </header>
 
@@ -78,18 +95,18 @@
   <div class="section-inner">
     <h2 class="section-title">В каких странах мы были?</h2>
     <div class="flags-grid">
-      <div class="flag-card"><span class="flag-emoji">🇵🇱</span><span class="flag-name">Польша</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇨🇿</span><span class="flag-name">Чехия</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇵🇦</span><span class="flag-name">Панама</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇪🇪</span><span class="flag-name">Эстония</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇹🇷</span><span class="flag-name">Турция</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇮🇹</span><span class="flag-name">Италия</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇦🇿</span><span class="flag-name">Азербайджан</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇳🇱</span><span class="flag-name">Нидерланды</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇧🇪</span><span class="flag-name">Бельгия</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇺🇸</span><span class="flag-name">США</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇰🇷</span><span class="flag-name">Южная Корея</span></div>
-      <div class="flag-card"><span class="flag-emoji">🇸🇬</span><span class="flag-name">Сингапур</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pl.png" alt="Польша" /><span class="flag-name">Польша</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/cz.png" alt="Чехия" /><span class="flag-name">Чехия</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pa.png" alt="Панама" /><span class="flag-name">Панама</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/ee.png" alt="Эстония" /><span class="flag-name">Эстония</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/tr.png" alt="Турция" /><span class="flag-name">Турция</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/it.png" alt="Италия" /><span class="flag-name">Италия</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/az.png" alt="Азербайджан" /><span class="flag-name">Азербайджан</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/nl.png" alt="Нидерланды" /><span class="flag-name">Нидерланды</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/be.png" alt="Бельгия" /><span class="flag-name">Бельгия</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/us.png" alt="США" /><span class="flag-name">США</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/kr.png" alt="Южная Корея" /><span class="flag-name">Южная Корея</span></div>
+      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/sg.png" alt="Сингапур" /><span class="flag-name">Сингапур</span></div>
     </div>
   </div>
 </section>
