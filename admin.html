@@ -199,7 +199,7 @@
       <path d="M42 35 78 53 42 71Z" fill="#CC0000"/>
     </svg>
     <h2>SmartHub Админка</h2>
-    <p>Введите ключ доступа для входа</p>
+    <p id="loginMode">Введите ключ доступа для входа</p>
     <input type="password" id="keyInput" placeholder="Ключ доступа" />
     <button onclick="doLogin()">Войти</button>
     <div id="loginError"></div>
@@ -279,7 +279,16 @@
 
 <div id="toast"></div>
 
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 <script>
+  const SERVER_MODE = window.location.protocol !== 'file:';
+  const CORRECT_KEY = 'smarthub2025';
+
+  // Показываем режим на экране логина
+  document.getElementById('loginMode').textContent = SERVER_MODE
+    ? 'Введите ключ доступа для входа'
+    : '⚠️ Режим без сервера — данные из браузера';
+
   let adminKey = '';
   let allRows = [];
 
@@ -287,22 +296,42 @@
   function doLogin() {
     const val = document.getElementById('keyInput').value.trim();
     if (!val) return;
-    adminKey = val;
-    fetchSubmissions().then(ok => {
-      if (ok) {
+
+    if (SERVER_MODE) {
+      adminKey = val;
+      fetchSubmissions().then(ok => {
+        if (ok) {
+          document.getElementById('loginOverlay').classList.add('hidden');
+        } else {
+          document.getElementById('loginError').textContent = 'Неверный ключ доступа';
+          adminKey = '';
+        }
+      });
+    } else {
+      // Без сервера — проверяем ключ локально
+      if (val === CORRECT_KEY) {
+        adminKey = val;
         document.getElementById('loginOverlay').classList.add('hidden');
+        loadLocalSubmissions();
       } else {
         document.getElementById('loginError').textContent = 'Неверный ключ доступа';
-        adminKey = '';
       }
-    });
+    }
   }
 
   document.getElementById('keyInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') doLogin();
   });
 
-  // ── Fetch data ────────────────────────────────────────
+  // ── Загрузка из localStorage (режим без сервера) ──────
+  function loadLocalSubmissions() {
+    allRows = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
+    renderTable(allRows);
+    renderStats(allRows);
+    showToast('Режим без сервера — данные из браузера', '');
+  }
+
+  // ── Загрузка с сервера ────────────────────────────────
   async function fetchSubmissions() {
     try {
       const res = await fetch(`/api/submissions?key=${adminKey}`);
@@ -312,11 +341,16 @@
       renderStats(allRows);
       return true;
     } catch {
-      return false;
+      // Сервер недоступен — подгружаем из localStorage
+      allRows = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
+      renderTable(allRows);
+      renderStats(allRows);
+      showToast('Сервер недоступен — показаны локальные данные', '');
+      return true;
     }
   }
 
-  // ── Render ────────────────────────────────────────────
+  // ── Render таблицы ────────────────────────────────────
   function renderTable(rows) {
     const tbody = document.getElementById('tableBody');
     if (!rows.length) {
@@ -331,7 +365,7 @@
         <td>${esc(r.city) || '<span style="color:#bbb">—</span>'}</td>
         <td>${esc(r.country) || '<span style="color:#bbb">—</span>'}</td>
         <td class="msg-cell">${esc(r.message) || '<span style="color:#bbb">—</span>'}</td>
-        <td style="color:#888;font-size:.82rem">${formatDate(r.created_at)}</td>
+        <td style="color:#888;font-size:.82rem">${esc(r.created_at) || '—'}</td>
         <td>
           <button class="btn btn-danger btn-sm" onclick="deleteRow(${r.id})">Удалить</button>
         </td>
@@ -341,14 +375,14 @@
 
   function renderStats(rows) {
     document.getElementById('statTotal').textContent = rows.length;
-    const today = new Date().toISOString().slice(0, 10);
-    const todayCount = rows.filter(r => r.created_at && r.created_at.startsWith(today)).length;
+    const today = new Date().toLocaleDateString('ru-RU');
+    const todayCount = rows.filter(r => r.created_at && r.created_at.includes(today)).length;
     document.getElementById('statToday').textContent = todayCount;
     const cities = new Set(rows.map(r => r.city).filter(Boolean));
     document.getElementById('statCities').textContent = cities.size || 0;
   }
 
-  // ── Search ────────────────────────────────────────────
+  // ── Поиск ─────────────────────────────────────────────
   function filterTable() {
     const q = document.getElementById('searchInput').value.toLowerCase();
     const filtered = allRows.filter(r =>
@@ -360,23 +394,49 @@
     renderTable(filtered);
   }
 
-  // ── Delete ────────────────────────────────────────────
+  // ── Удаление ──────────────────────────────────────────
   async function deleteRow(id) {
     if (!confirm('Удалить заявку #' + id + '?')) return;
-    const res = await fetch(`/api/submissions/${id}?key=${adminKey}`, { method: 'DELETE' });
-    if (res.ok) {
-      allRows = allRows.filter(r => r.id !== id);
-      renderTable(allRows);
-      renderStats(allRows);
-      showToast('Заявка удалена', 'ok');
-    } else {
-      showToast('Ошибка удаления', 'err');
+
+    if (SERVER_MODE && adminKey) {
+      try {
+        const res = await fetch(`/api/submissions/${id}?key=${adminKey}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error();
+      } catch { /* если сервер недоступен — всё равно удаляем локально */ }
     }
+
+    // Удаляем и из localStorage
+    const local = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
+    localStorage.setItem('sh_submissions', JSON.stringify(local.filter(r => r.id != id)));
+
+    allRows = allRows.filter(r => r.id != id);
+    renderTable(allRows);
+    renderStats(allRows);
+    showToast('Заявка удалена', 'ok');
   }
 
-  // ── Export ────────────────────────────────────────────
+  // ── Экспорт в Excel (работает без сервера) ────────────
   function exportExcel() {
-    window.location.href = `/api/export?key=${adminKey}`;
+    if (SERVER_MODE && adminKey) {
+      // Если сервер есть — скачиваем через API
+      window.location.href = `/api/export?key=${adminKey}`;
+      return;
+    }
+    // Без сервера — генерируем Excel прямо в браузере через SheetJS
+    const data = allRows.map(r => ({
+      'ID':        r.id,
+      'Имя':       r.name,
+      'Телефон':   r.phone,
+      'Город':     r.city || '',
+      'Страна':    r.country || '',
+      'Сообщение': r.message || '',
+      'Дата':      r.created_at || '',
+    }));
+    const ws = XLSX.utils.json_to_sheet(data.length ? data : [{}]);
+    ws['!cols'] = [{wch:6},{wch:22},{wch:18},{wch:16},{wch:16},{wch:40},{wch:22}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Заявки SmartHub');
+    XLSX.writeFile(wb, 'smarthub-zayavki.xlsx');
   }
 
   // ── Helpers ───────────────────────────────────────────
@@ -385,17 +445,17 @@
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
-  function formatDate(str) {
-    if (!str) return '—';
-    return str.replace('T', ' ').slice(0, 16);
-  }
-
   function showToast(msg, type = '') {
     const t = document.getElementById('toast');
     t.textContent = msg;
-    t.className = 'show ' + type;
-    setTimeout(() => t.className = '', 2500);
+    t.className = 'show ' + (type || '');
+    setTimeout(() => t.className = '', 3000);
   }
+
+  // Обновлять каждые 30 сек если сервер доступен
+  setInterval(() => {
+    if (adminKey && SERVER_MODE) fetchSubmissions();
+  }, 30000);
 
   // Обновлять каждые 30 секунд
   setInterval(() => {

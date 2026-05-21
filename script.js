@@ -35,6 +35,18 @@ const nav = document.querySelector('nav');
 burger.addEventListener('click', () => nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
+// ── Определяем режим: сервер или файл ────────────────────
+const SERVER_MODE = window.location.protocol !== 'file:';
+
+// ── Хранилище заявок (fallback — localStorage) ────────────
+function saveToLocal(data) {
+  const existing = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
+  data.id = Date.now();
+  data.created_at = new Date().toLocaleString('ru-RU');
+  existing.unshift(data);
+  localStorage.setItem('sh_submissions', JSON.stringify(existing));
+}
+
 // Contact form
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
@@ -52,22 +64,35 @@ document.getElementById('contactForm').addEventListener('submit', async function
     message: this.querySelector('[name="message"]').value.trim(),
   };
 
-  try {
-    const res = await fetch('/api/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
+  if (!data.name) { showFormToast('Укажите ваше имя', false); submitBtn.textContent = originalText; submitBtn.disabled = false; return; }
+  if (!data.phone) { showFormToast('Укажите номер телефона', false); submitBtn.textContent = originalText; submitBtn.disabled = false; return; }
 
-    if (res.ok) {
-      showFormToast(`Спасибо, ${data.name}! Мы свяжемся с вами в ближайшее время.`, true);
+  if (SERVER_MODE) {
+    // Режим сервера — отправляем на API
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        showFormToast(`Спасибо, ${data.name}! Мы свяжемся с вами в ближайшее время.`, true);
+        this.reset();
+      } else {
+        const err = await res.json().catch(() => ({}));
+        showFormToast(err.error || 'Ошибка отправки. Попробуйте ещё раз.', false);
+      }
+    } catch {
+      // Сервер недоступен — сохраняем локально
+      saveToLocal({ ...data });
+      showFormToast(`Спасибо, ${data.name}! Заявка сохранена.`, true);
       this.reset();
-    } else {
-      const err = await res.json();
-      showFormToast(err.error || 'Ошибка отправки. Попробуйте ещё раз.', false);
     }
-  } catch {
-    showFormToast('Нет соединения с сервером.', false);
+  } else {
+    // Режим без сервера (file://) — сохраняем в localStorage
+    saveToLocal({ ...data });
+    showFormToast(`Спасибо, ${data.name}! Мы свяжемся с вами в ближайшее время.`, true);
+    this.reset();
   }
 
   submitBtn.textContent = originalText;
