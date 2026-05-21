@@ -92,18 +92,26 @@ header {
   text-decoration: none;
   flex-shrink: 0;
 }
-.logo-img {
-  height: 52px;
+.logo-svg {
+  height: 70px;
   width: auto;
-  display: block;
-  object-fit: contain;
 }
-.logo-img--dark  { display: none; }
-body.dark .logo-img--light { display: none; }
-body.dark .logo-img--dark  { display: block; }
-
-/* Размер логотипа в хедере */
-.logo-img { height: 78px; }
+.logo-brand {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  fill: #1a1a1a;
+  transition: fill .3s;
+}
+.logo-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  fill: #888;
+  transition: fill .3s;
+}
+body.dark .logo-brand   { fill: #ffffff; }
+body.dark .logo-tagline { fill: #aaa; }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
