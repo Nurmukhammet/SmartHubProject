@@ -290,7 +290,10 @@
         <form id="contactForm" class="contact-form">
           <input type="text" name="name" placeholder="Ваше имя" required />
           <input type="tel" name="phone" placeholder="Номер телефона" required />
-          <input type="text" name="city" placeholder="Город" />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <input type="text" name="city" placeholder="Город" />
+            <input type="text" name="country" placeholder="Страна" />
+          </div>
           <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
           <button type="submit" class="btn btn-red">Отправить заявку</button>
         </form>
