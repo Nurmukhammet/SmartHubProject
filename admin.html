@@ -74,10 +74,7 @@
       display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 100;
     }
-    .logo-area { display: flex; align-items: center; gap: 12px; }
-    .logo-area svg { width: 42px; height: 42px; }
-    .logo-area .brand { font-weight: 900; font-size: 1.3rem; color: var(--dark); }
-    .logo-area .sub { font-size: .7rem; color: #888; }
+    .logo-area { display: flex; align-items: center; gap: 12px; flex-direction: column; justify-content: center; }
     .header-actions { display: flex; align-items: center; gap: 12px; }
 
     /* ── Buttons ── */
@@ -194,10 +191,7 @@
 <!-- ══ Login ════════════════════════════════════════════ -->
 <div id="loginOverlay">
   <div class="login-box">
-    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:52px;margin-bottom:14px">
-      <path d="M55 8C30 8 10 28 10 53s20 45 45 45 45-20 45-45S80 8 55 8Z" fill="none" stroke="#CC0000" stroke-width="7" stroke-linecap="round"/>
-      <path d="M42 35 78 53 42 71Z" fill="#CC0000"/>
-    </svg>
+    <img src="logo-black.png" alt="SmartHub" style="height:60px;width:auto;margin-bottom:10px;object-fit:contain;" />
     <h2>SmartHub Админка</h2>
     <p id="loginMode">Введите ключ доступа для входа</p>
     <input type="password" id="keyInput" placeholder="Ключ доступа" />
@@ -209,14 +203,8 @@
 <!-- ══ Header ═══════════════════════════════════════════ -->
 <header>
   <div class="logo-area">
-    <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M55 8C30 8 10 28 10 53s20 45 45 45 45-20 45-45S80 8 55 8Z" fill="none" stroke="#CC0000" stroke-width="7" stroke-linecap="round"/>
-      <path d="M42 35 78 53 42 71Z" fill="#CC0000"/>
-    </svg>
-    <div>
-      <div class="brand">SmartHub</div>
-      <div class="sub">Панель администратора</div>
-    </div>
+    <img src="logo-black.png" alt="SmartHub" style="height:44px;width:auto;object-fit:contain;" />
+    <div class="sub" style="font-size:.72rem;color:#888;margin-top:2px;">Панель администратора</div>
   </div>
   <div class="header-actions">
     <a href="index.html" class="btn btn-outline">← На сайт</a>

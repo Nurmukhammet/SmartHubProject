@@ -89,15 +89,18 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
-}
-.logo-icon {
   flex-shrink: 0;
 }
-.logo-text { line-height: 1.1; }
-.logo-text .brand { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; }
-.logo-text .tagline { font-size: 0.65rem; color: var(--text-muted); }
+.logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+.logo-img--dark { display: none; }
+body.dark .logo-img--light { display: none; }
+body.dark .logo-img--dark  { display: block; }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
