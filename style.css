@@ -76,7 +76,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
-  height: 80px;
+  height: 96px;
   transition: background-color .3s;
 }
 
@@ -103,7 +103,7 @@ body.dark .logo-img--light { display: none; }
 body.dark .logo-img--dark  { display: block; }
 
 /* Размер логотипа в хедере */
-.logo-img { height: 48px; }
+.logo-img { height: 78px; }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
@@ -163,7 +163,7 @@ section { padding: 80px 40px; position: relative; }
 
 /* ─── HERO ────────────────────────────────────────────── */
 #home {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 96px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -439,7 +439,7 @@ footer span { color: var(--red); font-weight: 700; }
 @media (max-width: 640px) {
   header { padding: 0 20px; }
   section { padding: 60px 20px; }
-  nav { display: none; flex-direction: column; gap: 0; position: absolute; top: 80px; left: 0; right: 0; background: var(--nav-bg); box-shadow: var(--shadow); padding: 16px 0; z-index: 999; }
+  nav { display: none; flex-direction: column; gap: 0; position: absolute; top: 96px; left: 0; right: 0; background: var(--nav-bg); box-shadow: var(--shadow); padding: 16px 0; z-index: 999; }
   nav.open { display: flex; }
   nav a { padding: 12px 30px; width: 100%; border-bottom: 1px solid #eee; }
   .burger { display: flex; }
