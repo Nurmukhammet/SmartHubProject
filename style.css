@@ -89,29 +89,37 @@ header {
 .logo {
   display: flex;
   align-items: center;
+  gap: 12px;
   text-decoration: none;
   flex-shrink: 0;
 }
-.logo-svg {
-  height: 70px;
+.logo-icon-svg {
+  height: 52px;
   width: auto;
+  flex-shrink: 0;
+}
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
 }
 .logo-brand {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-weight: 900;
-  font-size: 28px;
-  fill: #1a1a1a;
-  transition: fill .3s;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  letter-spacing: -0.5px;
+  transition: color .3s;
 }
 .logo-tagline {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-weight: 500;
-  font-size: 11px;
-  fill: #888;
-  transition: fill .3s;
+  font-size: 0.62rem;
+  color: #888;
+  transition: color .3s;
 }
-body.dark .logo-brand   { fill: #ffffff; }
-body.dark .logo-tagline { fill: #aaa; }
+body.dark .logo-brand   { color: #ffffff; }
+body.dark .logo-tagline { color: #aaa; }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
