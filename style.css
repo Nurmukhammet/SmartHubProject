@@ -89,33 +89,35 @@ header {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
   text-decoration: none;
   flex-shrink: 0;
 }
 .logo-icon-svg {
-  height: 52px;
+  height: 64px;
   width: auto;
   flex-shrink: 0;
+  margin-left: -4px;
 }
 .logo-text-group {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 .logo-brand {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.55rem;
   color: #1a1a1a;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   transition: color .3s;
 }
 .logo-tagline {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   font-weight: 500;
-  font-size: 0.62rem;
-  color: #888;
+  font-size: 0.6rem;
+  color: #555;
+  letter-spacing: 0.02em;
   transition: color .3s;
 }
 body.dark .logo-brand   { color: #ffffff; }
