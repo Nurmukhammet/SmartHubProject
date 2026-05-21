@@ -3,20 +3,38 @@
 :root {
   --red: #CC0000;
   --blue: #1A1A8C;
-  --dark: #333333;
+  --dark: #1a1a1a;
   --light-bg: #F0EFEE;
   --white: #ffffff;
   --card-bg: #ffffff;
   --shadow: 0 2px 12px rgba(0,0,0,0.10);
+  --nav-bg: #ffffff;
+  --input-bg: #ffffff;
+  --footer-bg: #1a1a1a;
+  --text-muted: #666;
+}
+
+/* ─── DARK THEME ──────────────────────────────────────── */
+body.dark {
+  --dark: #e8e8e8;
+  --light-bg: #181818;
+  --white: #242424;
+  --card-bg: #2e2e2e;
+  --shadow: 0 2px 16px rgba(0,0,0,0.45);
+  --nav-bg: #1e1e1e;
+  --input-bg: #2a2a2a;
+  --footer-bg: #111111;
+  --text-muted: #aaa;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background-color: var(--light-bg);
   color: var(--dark);
   line-height: 1.6;
+  transition: background-color .3s, color .3s;
 }
 
 /* ─── GEAR BACKGROUND ─────────────────────────────────── */
@@ -52,13 +70,14 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: var(--white);
+  background: var(--nav-bg);
   box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
   height: 80px;
+  transition: background-color .3s;
 }
 
 .logo {
@@ -71,17 +90,38 @@ header {
   flex-shrink: 0;
 }
 .logo-text { line-height: 1.1; }
-.logo-text .brand { font-size: 1.4rem; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; }
-.logo-text .tagline { font-size: 0.65rem; color: #666; }
+.logo-text .brand { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; font-weight: 900; color: var(--dark); letter-spacing: -0.5px; }
+.logo-text .tagline { font-size: 0.65rem; color: var(--text-muted); }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.95rem;
   color: var(--red);
   transition: opacity .2s;
+  font-family: 'Inter', sans-serif;
 }
+
+/* ─── THEME TOGGLE BUTTON ─────────────────────────────── */
+.theme-toggle {
+  background: none;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 6px 14px;
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color .2s, background .2s;
+  color: var(--dark);
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--red); background: rgba(204,0,0,0.06); }
+body.dark .theme-toggle { border-color: #555; }
+body.dark .theme-toggle:hover { border-color: var(--red); }
 nav a.active, nav a:hover { opacity: 0.75; }
 nav a.nav-home { color: var(--dark); }
 
@@ -93,10 +133,12 @@ section { padding: 80px 40px; position: relative; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 
 .section-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2rem;
   font-weight: 900;
   color: var(--red);
   margin-bottom: 30px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.10);
 }
 .section-title.blue { color: var(--blue); }
 
@@ -111,17 +153,25 @@ section { padding: 80px 40px; position: relative; }
 }
 #home .section-inner { z-index: 1; position: relative; }
 #home h1 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(4rem, 12vw, 9rem);
   font-weight: 900;
   color: var(--red);
   line-height: 1;
   margin-bottom: 20px;
+  text-shadow:
+    3px 3px 0px rgba(0,0,0,0.12),
+    6px 6px 0px rgba(0,0,0,0.06),
+    0 0 40px rgba(204,0,0,0.20);
+  -webkit-text-stroke: 1px rgba(120,0,0,0.15);
 }
 #home .hero-sub {
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--blue);
   margin-bottom: 40px;
+  letter-spacing: 0.01em;
 }
 .btn {
   display: inline-block;
@@ -137,6 +187,25 @@ section { padding: 80px 40px; position: relative; }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
 .btn-white { background: var(--white); color: var(--dark); }
 .btn-red { background: var(--red); color: var(--white); }
+
+/* ─── DARK MODE CARD OVERRIDES ────────────────────────── */
+body.dark .flag-card,
+body.dark .achievement-card { background: var(--card-bg); }
+body.dark .track-card { background: var(--card-bg); }
+body.dark .review-card { background: var(--card-bg); }
+body.dark .level-badge { background: #1e1e1e; }
+body.dark .level-badge .lv-age { color: #888; }
+body.dark .achievement-card p { color: #aaa; }
+body.dark .photo-placeholder { background: #2e2e2e; color: #666; }
+body.dark .pricing-box { background: var(--card-bg); }
+body.dark .contact-form input,
+body.dark .contact-form textarea { background: var(--input-bg); border-color: #444; color: var(--dark); }
+body.dark .contact-form input::placeholder,
+body.dark .contact-form textarea::placeholder { color: #666; }
+body.dark footer { background: var(--footer-bg); }
+body.dark .location-item p { color: #aaa; }
+body.dark .track-desc { color: #ccc; }
+body.dark nav { background: var(--nav-bg); }
 
 /* ─── ABOUT ───────────────────────────────────────────── */
 #about { background: var(--white); }
