@@ -98,9 +98,12 @@ header {
   display: block;
   object-fit: contain;
 }
-.logo-img--dark { display: none; }
+.logo-img--dark  { display: none; }
 body.dark .logo-img--light { display: none; }
 body.dark .logo-img--dark  { display: block; }
+
+/* Размер логотипа в хедере */
+.logo-img { height: 48px; }
 
 nav { display: flex; gap: 30px; align-items: center; }
 nav a {
