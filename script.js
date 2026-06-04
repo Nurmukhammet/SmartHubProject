@@ -52,11 +52,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
   btn.disabled = true;
 
   const data = {
-    name:    this.querySelector('[name="name"]').value.trim(),
-    phone:   this.querySelector('[name="phone"]').value.trim(),
-    city:    (this.querySelector('[name="city"]') || {}).value?.trim() || '',
-    country: (this.querySelector('[name="country"]') || {}).value?.trim() || '',
-    message: (this.querySelector('[name="message"]') || {}).value?.trim() || '',
+    name:      this.querySelector('[name="name"]').value.trim(),
+    phone:     this.querySelector('[name="phone"]').value.trim(),
+    age:       this.querySelector('[name="age"]').value.trim(),
+    direction: this.querySelector('[name="direction"]').value.trim(),
+    message:   (this.querySelector('[name="message"]') || {}).value?.trim() || '',
   };
 
   if (!data.name)  { toast('Укажите ваше имя', false);        btn.textContent = orig; btn.disabled = false; return; }

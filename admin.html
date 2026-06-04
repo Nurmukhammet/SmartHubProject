@@ -250,7 +250,7 @@
     </div>
     <div class="stat-card">
       <div class="num" id="statCities">—</div>
-      <div class="label">Разных городов</div>
+      <div class="label">Разных направлений</div>
     </div>
   </div>
 
@@ -267,8 +267,8 @@
             <th>#</th>
             <th>Имя</th>
             <th>Телефон</th>
-            <th>Город</th>
-            <th>Страна</th>
+            <th>Возраст</th>
+            <th>Направление</th>
             <th>Сообщение</th>
             <th>Дата</th>
             <th></th>
@@ -367,8 +367,8 @@
         <td><span class="badge-id">${r.id}</span></td>
         <td><strong>${esc(r.name)}</strong></td>
         <td>${esc(r.phone)}</td>
-        <td>${esc(r.city) || '<span style="color:#bbb">—</span>'}</td>
-        <td>${esc(r.country) || '<span style="color:#bbb">—</span>'}</td>
+        <td>${esc(r.age) || '<span style="color:#bbb">—</span>'}</td>
+        <td>${esc(r.direction) || '<span style="color:#bbb">—</span>'}</td>
         <td class="msg-cell">${esc(r.message) || '<span style="color:#bbb">—</span>'}</td>
         <td style="color:#888;font-size:.82rem">${esc(r.created_at) || '—'}</td>
         <td>
@@ -383,8 +383,8 @@
     const today = new Date().toLocaleDateString('ru-RU');
     const todayCount = rows.filter(r => r.created_at && r.created_at.includes(today)).length;
     document.getElementById('statToday').textContent = todayCount;
-    const cities = new Set(rows.map(r => r.city).filter(Boolean));
-    document.getElementById('statCities').textContent = cities.size || 0;
+    const directions = new Set(rows.map(r => r.direction).filter(Boolean));
+    document.getElementById('statCities').textContent = directions.size || 0;
   }
 
   // ── Поиск ─────────────────────────────────────────────
@@ -393,8 +393,8 @@
     const filtered = allRows.filter(r =>
       r.name.toLowerCase().includes(q) ||
       r.phone.toLowerCase().includes(q) ||
-      (r.city || '').toLowerCase().includes(q) ||
-      (r.country || '').toLowerCase().includes(q)
+      (r.age || '').toString().toLowerCase().includes(q) ||
+      (r.direction || '').toLowerCase().includes(q)
     );
     renderTable(filtered);
   }
@@ -432,13 +432,13 @@
       'ID':        r.id,
       'Имя':       r.name,
       'Телефон':   r.phone,
-      'Город':     r.city || '',
-      'Страна':    r.country || '',
+      'Возраст':   r.age || '',
+      'Направление': r.direction || '',
       'Сообщение': r.message || '',
       'Дата':      r.created_at || '',
     }));
     const ws = XLSX.utils.json_to_sheet(data.length ? data : [{}]);
-    ws['!cols'] = [{wch:6},{wch:22},{wch:18},{wch:16},{wch:16},{wch:40},{wch:22}];
+    ws['!cols'] = [{wch:6},{wch:22},{wch:18},{wch:12},{wch:16},{wch:40},{wch:22}];
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Заявки SmartHub');
     XLSX.writeFile(wb, 'smarthub-zayavki.xlsx');

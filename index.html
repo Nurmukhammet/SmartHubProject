@@ -297,8 +297,13 @@
           <input type="text" name="name" placeholder="Ваше имя" required />
           <input type="tel" name="phone" placeholder="Номер телефона" required />
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <input type="text" name="city" placeholder="Город" />
-            <input type="text" name="country" placeholder="Страна" />
+            <input type="number" name="age" placeholder="Возраст" required />
+            <select name="direction" required style="padding:12px;border:1px solid #ddd;border-radius:8px;font-size:1rem;font-family:inherit;">
+              <option value="" disabled selected>Выберите направление</option>
+              <option value="дроны">Дроны</option>
+              <option value="робототехника">Робототехника</option>
+              <option value="лагеря">Лагеря</option>
+            </select>
           </div>
           <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
           <button type="submit" class="btn btn-red">Отправить заявку</button>
