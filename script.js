@@ -31,6 +31,12 @@ const nav = document.querySelector('nav');
 burger.addEventListener('click', () => nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
+// ── Переворачивающиеся билборды (клик/тап на мобильных) ──
+const flipCards = document.querySelectorAll('.flip-card');
+flipCards.forEach(card => {
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
+});
+
 // ── Сохранение в localStorage ─────────────────────────────
 function saveToLocal(data) {
   const list = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
