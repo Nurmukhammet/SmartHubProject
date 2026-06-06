@@ -376,53 +376,83 @@ body.dark nav { background: var(--nav-bg); }
 
 /* ─── CURRICULUM ──────────────────────────────────────── */
 #curriculum { background: var(--white); }
-.about-panel {
-  background: var(--light-bg);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-  padding: 34px 36px;
+.about-billboards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
   margin-bottom: 42px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
 }
-.about-copy p {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--dark);
-  margin-bottom: 18px;
+.flip-card {
+  perspective: 1200px;
 }
-.about-highlights {
-  display: grid;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  border-radius: 26px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  backface-visibility: hidden;
+  box-shadow: var(--shadow);
+}
+.flip-card-front {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 18px;
 }
-.highlight-card {
-  background: var(--white);
-  border-radius: 18px;
-  padding: 22px 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  transition: transform .25s ease, box-shadow .25s ease;
+.flip-card-back {
+  background: linear-gradient(180deg, #fdf1f1 0%, #fff8f8 100%);
+  padding: 30px 28px;
+  transform: rotateY(180deg);
+  overflow: auto;
 }
-.highlight-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.10);
-}
-.highlight-icon {
-  font-size: 2rem;
+.billboard-chip {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
   background: rgba(204,0,0,0.1);
   color: var(--red);
-  margin-bottom: 14px;
-}
-.highlight-card p {
+  font-weight: 700;
+  letter-spacing: 0.02em;
   font-size: 0.95rem;
+}
+.billboard-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 900;
   color: var(--dark);
-  line-height: 1.7;
+  line-height: 1.1;
+}
+.billboard-caption {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.flip-card-back h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--red);
+  margin-bottom: 18px;
+}
+.flip-card-back p {
+  color: var(--dark);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  margin-bottom: 16px;
 }
 .curriculum-grid {
   display: grid;
@@ -563,7 +593,7 @@ footer span { color: var(--red); font-weight: 700; }
   .reviews-grid { grid-template-columns: repeat(2, 1fr); }
   .contacts-layout { grid-template-columns: 1fr; }
   .photos-grid { grid-template-columns: 1fr 1fr; }
-  .about-panel {
+  .about-billboards {
     grid-template-columns: 1fr;
   }
 }
