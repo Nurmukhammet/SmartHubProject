@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SmartHub — Robotics & Drone Academy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartHub — Robotics & Drone Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-<!-- ═══ HEADER ══════════════════════════════════════════ -->
-<header>
-  <a href="#home" class="logo">
-    <div class="logo-text-group">
-      <span class="logo-brand">SmartHub</span>
-      <span class="logo-tagline">Robotics &amp; Drone Academy</span>
-    </div>
-    <svg class="logo-icon-svg" viewBox="0 0 110 120" xmlns="http://www.w3.org/2000/svg">
+    <!-- ═══ HEADER ══════════════════════════════════════════ -->
+    <header>
+        <a href="#home" class="logo">
+            <div class="logo-text-group">
+                <span class="logo-brand">SmartHub</span>
+                <span class="logo-tagline">Robotics &amp; Drone Academy</span>
+            </div>
+            <svg class="logo-icon-svg" viewBox="0 0 110 120" xmlns="http://www.w3.org/2000/svg">
       <path d="M14,108 Q4,108 4,98 L4,22 Q4,12 14,12 L88,54 Q98,60 88,66 Z"
             fill="none" stroke="#CC0000" stroke-width="12"
             stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
-  </a>
+        </a>
 
-  <div class="header-right">
-    <nav id="mainNav">
-      <a href="#home" class="nav-home active">Главная</a>
-      <a href="#about">Учебная Программа</a>
-      <a href="#achievements">Достижения</a>
-      <a href="#reviews">Отзывы</a>
-      <a href="#contacts">Контакты</a>
-    </nav>
+        <div class="header-right">
+            <nav id="mainNav">
+                <a href="#home" class="nav-home active">Главная</a>
+                <a href="#about">Учебная Программа</a>
+                <a href="#achievements">Достижения</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
 
-    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Тёмная тема">
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Тёмная тема">
       <!-- Moon icon (light mode) -->
       <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -53,464 +55,509 @@
       </svg>
     </button>
 
-    <div class="burger" aria-label="Меню" role="button" tabindex="0">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</header>
-
-<!-- ═══ HERO ═════════════════════════════════════════════ -->
-<section id="home" class="gear-bg">
-  <div class="section-inner">
-    <h1>Smarthub</h1>
-    <p class="hero-sub">Первая академия роботехнике и Дронов в Казахстане</p>
-    <a href="#about" class="btn btn-white">О нас</a>
-  </div>
-</section>
-
-<!-- ═══ О НАС ════════════════════════════════════════════ -->
-<section id="about" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">О нас</h2>
-    <p class="about-sub">Первая академия роботехнике и Дронов в Казахстане</p>
-
-    <div class="about-billboards">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="billboard-chip">SmartHub</div>
-            <div class="billboard-title">Первая академия робототехники и дронов</div>
-            <p class="billboard-caption">Современное образование, технологии и практика в одном месте.</p>
-          </div>
-          <div class="flip-card-back">
-            <h3>SmartHub</h3>
-            <p>SmartHub — первая академия робототехники и дронов в Казахстане, которая объединяет современные технологии, инженерное образование и практические навыки будущего.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-            <div class="billboard-chip">Наша цель</div>
-            <div class="billboard-title">Подготовить новое поколение</div>
-            <p class="billboard-caption">Инженеры, разработчики, пилоты дронов и технологические предприниматели.</p>
-          </div>
-          <div class="flip-card-back">
-            <h3>Наша цель</h3>
-            <p>Наша цель — подготовить новое поколение инженеров, разработчиков, операторов беспилотных систем и технологических предпринимателей. Мы создаем образовательную среду, где дети, подростки и взрослые не только изучают теорию, но и реализуют собственные проекты, участвуют в соревнованиях и работают с реальным оборудованием.</p>
-            <p>В академии SmartHub обучение построено на практическом подходе. Студенты изучают робототехнику, программирование, электронику, 3D-моделирование, беспилотные летательные аппараты и современные цифровые технологии. Каждый курс направлен на развитие инженерного мышления, креативности, навыков командной работы и решения реальных задач.</p>
-            <p>Мы стремимся сделать передовое технологическое образование доступным для каждого и внести вклад в развитие инженерного потенциала Казахстана.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="photos-grid">
-      <div class="photo-placeholder">
-        <img src="photo_2026-05-22_03-18-37.jpg" alt="Казахстанский флаг" />
-      </div>
-      <div class="photo-placeholder">
-        <img src="photo_2026-05-22_03-18-38.jpg" alt="Команда на соревнованиях" />
-      </div>
-      <div class="photo-placeholder">
-        <img src="photo_2026-05-22_03-18-39.jpg" alt="LIMRA Hotel & Resorts" />
-      </div>
-    </div>
-
-    <h3 class="section-title">Наша Миссия</h3>
-    <p class="mission-text">
-      Вдохновлять и обучать будущих создателей технологий, развивая инженерное мышление, инновационность и лидерские качества через практическое образование в сфере робототехники и беспилотных технологий.
-    </p>
-
-    <h3 class="section-title">Наши Преимущества</h3>
-    <div class="advantages-grid">
-      <div class="advantage-item">
-        <div class="advantage-icon">🚀</div>
-        <h4>Первая академия в Казахстане</h4>
-        <p>Первая академия робототехники и дронов в Казахстане с современным подходом к образованию.</p>
-      </div>
-      <div class="advantage-item">
-        <div class="advantage-icon">⚙️</div>
-        <h4>Современное оборудование</h4>
-        <p>Практические занятия с реальным оборудованием и инновационными технологиями.</p>
-      </div>
-      <div class="advantage-item">
-        <div class="advantage-icon">👨‍🏫</div>
-        <h4>Опытные наставники</h4>
-        <p>Обучение под руководством опытных наставников с многолетним опытом.</p>
-      </div>
-      <div class="advantage-item">
-        <div class="advantage-icon">🏆</div>
-        <h4>Участие в конкурсах</h4>
-        <p>Участие в конкурсах, олимпиадах и технологических проектах на мировом уровне.</p>
-      </div>
-      <div class="advantage-item">
-        <div class="advantage-icon">👥</div>
-        <h4>Программы для всех</h4>
-        <p>Программы для разных возрастов и уровней подготовки — от детей до взрослых.</p>
-      </div>
-      <div class="advantage-item">
-        <div class="advantage-icon">💼</div>
-        <h4>Профессии будущего</h4>
-        <p>Подготовка к профессиям будущего в сфере технологий и инженерии.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ СТРАНЫ ═══════════════════════════════════════════ -->
-<section id="countries" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">В каких странах мы были?</h2>
-    <div class="flags-grid">
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pl.png" alt="Польша" /><span class="flag-name">Польша</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/cz.png" alt="Чехия" /><span class="flag-name">Чехия</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pa.png" alt="Панама" /><span class="flag-name">Панама</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/ee.png" alt="Эстония" /><span class="flag-name">Эстония</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/tr.png" alt="Турция" /><span class="flag-name">Турция</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/it.png" alt="Италия" /><span class="flag-name">Италия</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/az.png" alt="Азербайджан" /><span class="flag-name">Азербайджан</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/nl.png" alt="Нидерланды" /><span class="flag-name">Нидерланды</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/be.png" alt="Бельгия" /><span class="flag-name">Бельгия</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/us.png" alt="США" /><span class="flag-name">США</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/kr.png" alt="Южная Корея" /><span class="flag-name">Южная Корея</span></div>
-      <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/sg.png" alt="Сингапур" /><span class="flag-name">Сингапур</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ УЧЕБНАЯ ПРОГРАММА ════════════════════════════════ -->
-<section id="curriculum" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">Учебная Программа</h2>
-
-    <div class="curriculum-grid">
-      <!-- Робототехника -->
-      <div class="track-card">
-        <h3>🤖 Робототехника</h3>
-        <div class="level-grid">
-          <div class="level-card flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="level-icon">🟣</div>
-                <div class="level-name">Junior</div>
-                <div class="level-age">0–2 года</div>
-              </div>
-              <div class="flip-card-back">
-                <h4>Junior</h4>
-                <p>Возраст: от 5 лет до 2 класса</p>
-                <p>На начальном уровне дети знакомятся с миром робототехники через конструкторы LEGO Education WeDo 2.0. Ученики собирают простые механизмы, изучают основы программирования в игровой форме, развивают логику, воображение и навыки решения задач.</p>
-                <p>Изучаем:</p>
-                <ul>
-                  <li>основы робототехники;</li>
-                  <li>первые алгоритмы и программирование;</li>
-                  <li>работу датчиков и моторов;</li>
-                  <li>развитие логического мышления и креативности.</li>
-                </ul>
-              </div>
+            <div class="burger" aria-label="Меню" role="button" tabindex="0">
+                <span></span><span></span><span></span>
             </div>
-          </div>
+        </div>
+    </header>
 
-          <div class="level-card flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="level-icon">🟢</div>
-                <div class="level-name">Middle</div>
-                <div class="level-age">3–4 года</div>
-              </div>
-              <div class="flip-card-back">
-                <h4>Middle</h4>
-                <p>Возраст: 3–4 классы</p>
-                <p>На уровне Middle ученики начинают работать с LEGO Education SPIKE Prime. Они изучают более сложные механизмы, осваивают программирование и учатся создавать автономных роботов для выполнения различных задач.</p>
-                <p>Изучаем:</p>
-                <ul>
-                  <li>конструирование роботов;</li>
-                  <li>основы инженерного проектирования;</li>
-                  <li>программирование роботов;</li>
-                  <li>работу датчиков и автоматизацию процессов.</li>
-                </ul>
-              </div>
+    <!-- ═══ HERO ═════════════════════════════════════════════ -->
+    <section id="home" class="gear-bg">
+        <div class="section-inner">
+            <h1>Smarthub</h1>
+            <p class="hero-sub">Первая академия роботехнике и Дронов в Казахстане</p>
+            <a href="#about" class="btn btn-white">О нас</a>
+        </div>
+    </section>
+
+    <!-- ═══ О НАС ════════════════════════════════════════════ -->
+    <section id="about" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">О нас</h2>
+            <p class="about-sub">Первая академия роботехнике и Дронов в Казахстане</p>
+
+            <div class="about-billboards">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="billboard-chip">SmartHub</div>
+                            <div class="billboard-title">Первая академия робототехники и дронов</div>
+                            <p class="billboard-caption">Современное образование, технологии и практика в одном месте.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>SmartHub</h3>
+                            <p>SmartHub — первая академия робототехники и дронов в Казахстане, которая объединяет современные технологии, инженерное образование и практические навыки будущего.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="billboard-chip">Наша цель</div>
+                            <div class="billboard-title">Подготовить новое поколение</div>
+                            <p class="billboard-caption">Инженеры, разработчики, пилоты дронов и технологические предприниматели.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Наша цель</h3>
+                            <p>Наша цель — подготовить новое поколение инженеров, разработчиков, операторов беспилотных систем и технологических предпринимателей. Мы создаем образовательную среду, где дети, подростки и взрослые не только изучают теорию,
+                                но и реализуют собственные проекты, участвуют в соревнованиях и работают с реальным оборудованием.</p>
+                            <p>В академии SmartHub обучение построено на практическом подходе. Студенты изучают робототехнику, программирование, электронику, 3D-моделирование, беспилотные летательные аппараты и современные цифровые технологии. Каждый курс
+                                направлен на развитие инженерного мышления, креативности, навыков командной работы и решения реальных задач.</p>
+                            <p>Мы стремимся сделать передовое технологическое образование доступным для каждого и внести вклад в развитие инженерного потенциала Казахстана.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <div class="level-card flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="level-icon">🟡</div>
-                <div class="level-name">Master</div>
-                <div class="level-age">5–7 лет</div>
-              </div>
-              <div class="flip-card-back">
-                <h4>Master</h4>
-                <p>Возраст: 5–7 классы</p>
-                <p>Уровень Master направлен на углубленное изучение робототехники с использованием платформы SPIKE Prime. Ученики создают сложные проекты, участвуют в соревнованиях и решают инженерные задачи, приближенные к реальным условиям.</p>
-                <p>Изучаем:</p>
-                <ul>
-                  <li>продвинутое программирование;</li>
-                  <li>инженерные расчеты и проектирование;</li>
-                  <li>автономные роботизированные системы;</li>
-                  <li>подготовку к соревнованиям и конкурсам.</li>
-                </ul>
-              </div>
+            <div class="photos-grid">
+                <div class="photo-placeholder">
+                    <img src="photo_2026-05-22_03-18-37.jpg" alt="Казахстанский флаг" />
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photo_2026-05-22_03-18-38.jpg" alt="Команда на соревнованиях" />
+                </div>
+                <div class="photo-placeholder">
+                    <img src="photo_2026-05-22_03-18-39.jpg" alt="LIMRA Hotel & Resorts" />
+                </div>
             </div>
-          </div>
 
-          <div class="level-card flip-card">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <div class="level-icon">🔴</div>
-                <div class="level-name">Expert</div>
-                <div class="level-age">8 лет +</div>
-              </div>
-              <div class="flip-card-back">
-                <h4>Expert</h4>
-                <p>Возраст: 8–10 классы</p>
-                <p>На высшем уровне ученики переходят к работе с Arduino и изучают современные технологии разработки электронных устройств. Они создают собственные проекты, работают с датчиками, микроконтроллерами и изучают основы Интернета вещей (IoT).</p>
-                <p>Изучаем:</p>
-                <ul>
-                  <li>программирование микроконтроллеров Arduino;</li>
-                  <li>электронику и схемотехнику;</li>
-                  <li>работу с датчиками и исполнительными устройствами;</li>
-                  <li>создание собственных инженерных проектов;</li>
-                  <li>основы автоматизации и IoT-технологий.</li>
-                </ul>
-              </div>
+            <h3 class="section-title">Наша Миссия</h3>
+            <p class="mission-text">
+                Вдохновлять и обучать будущих создателей технологий, развивая инженерное мышление, инновационность и лидерские качества через практическое образование в сфере робототехники и беспилотных технологий.
+            </p>
+
+            <h3 class="section-title">Наши Преимущества</h3>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">🚀</div>
+                    <h4>Первая академия в Казахстане</h4>
+                    <p>Первая академия робототехники и дронов в Казахстане с современным подходом к образованию.</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">⚙️</div>
+                    <h4>Современное оборудование</h4>
+                    <p>Практические занятия с реальным оборудованием и инновационными технологиями.</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">👨‍🏫</div>
+                    <h4>Опытные наставники</h4>
+                    <p>Обучение под руководством опытных наставников с многолетним опытом.</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">🏆</div>
+                    <h4>Участие в конкурсах</h4>
+                    <p>Участие в конкурсах, олимпиадах и технологических проектах на мировом уровне.</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">👥</div>
+                    <h4>Программы для всех</h4>
+                    <p>Программы для разных возрастов и уровней подготовки — от детей до взрослых.</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">💼</div>
+                    <h4>Профессии будущего</h4>
+                    <p>Подготовка к профессиям будущего в сфере технологий и инженерии.</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Дроны -->
-      <div class="track-card">
-        <h3>🚁 Дроны</h3>
-        <p class="track-desc">
-          Обучение управлению беспилотными летательными аппаратами, программированию
-          автономных полётов и участию в международных соревнованиях по дронам.
-          Ученики осваивают FPV-пилотирование, навигацию и разработку дронов с нуля.
-        </p>
-      </div>
-
-      <!-- Спортивная РВТ -->
-      <div class="track-card">
-        <h3>🏆 Спортивная РВТ</h3>
-        <p class="track-desc">
-          Подготовка к соревнованиям по спортивной робототехнике — командные турниры,
-          тактические задачи, программирование под соревновательный регламент.
-          Наши ученики представляют Казахстан на мировых чемпионатах.
-        </p>
-      </div>
-    </div>
-
-    <div class="pricing-box">
-      <div>
-        <p>Записаться на пробный урок</p>
-        <p class="price">12 000 тг / 32 000 тг в месяц</p>
-      </div>
-      <a href="#contacts" class="btn btn-red">Записаться</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ДОСТИЖЕНИЯ ════════════════════════════════════════ -->
-<section id="achievements" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">Достижения</h2>
-
-    <div class="year-report">
-      <div class="report-header">
-        <span class="report-tag">Итоги за год</span>
-        <h3>SmartHub в цифрах и победах</h3>
-        <p>Яркий год для нашей академии: новые филиалы, сотни учеников и сильные результаты на международных и республиканских соревнованиях.</p>
-      </div>
-
-      <div class="report-cards">
-        <div class="report-card report-card-large">
-          <div class="report-icon">🏫</div>
-          <h4>6 филиалов</h4>
-          <p>Skillset, 84 школа, 17 школа, 97 школа, 66 школа, 101 школа</p>
+    <!-- ═══ СТРАНЫ ═══════════════════════════════════════════ -->
+    <section id="countries" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">В каких странах мы были?</h2>
+            <div class="flags-grid">
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pl.png" alt="Польша" /><span class="flag-name">Польша</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/cz.png" alt="Чехия" /><span class="flag-name">Чехия</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/pa.png" alt="Панама" /><span class="flag-name">Панама</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/ee.png" alt="Эстония" /><span class="flag-name">Эстония</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/tr.png" alt="Турция" /><span class="flag-name">Турция</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/it.png" alt="Италия" /><span class="flag-name">Италия</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/az.png" alt="Азербайджан" /><span class="flag-name">Азербайджан</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/nl.png" alt="Нидерланды" /><span class="flag-name">Нидерланды</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/be.png" alt="Бельгия" /><span class="flag-name">Бельгия</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/us.png" alt="США" /><span class="flag-name">США</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/kr.png" alt="Южная Корея" /><span class="flag-name">Южная Корея</span></div>
+                <div class="flag-card"><img class="flag-img" src="https://flagcdn.com/w80/sg.png" alt="Сингапур" /><span class="flag-name">Сингапур</span></div>
+            </div>
         </div>
-        <div class="report-card report-card-large">
-          <div class="report-icon">🎓</div>
-          <h4>300 учеников</h4>
-          <p>Активная командная школа для детей и подростков по всей академии.</p>
+    </section>
+
+    <!-- ═══ УЧЕБНАЯ ПРОГРАММА ════════════════════════════════ -->
+    <section id="curriculum" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">Учебная Программа</h2>
+
+            <div class="curriculum-grid">
+                <!-- Робототехника -->
+                <div class="track-card">
+                    <h3>🤖 Робототехника</h3>
+                    <div class="level-grid">
+                        <div class="level-card flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="level-icon">🟣</div>
+                                    <div class="level-name">Junior</div>
+                                    <div class="level-age">0–2 года</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Junior</h4>
+                                    <p>Возраст: от 5 лет до 2 класса</p>
+                                    <p>На начальном уровне дети знакомятся с миром робототехники через конструкторы LEGO Education WeDo 2.0. Ученики собирают простые механизмы, изучают основы программирования в игровой форме, развивают логику, воображение
+                                        и навыки решения задач.</p>
+                                    <p>Изучаем:</p>
+                                    <ul>
+                                        <li>основы робототехники;</li>
+                                        <li>первые алгоритмы и программирование;</li>
+                                        <li>работу датчиков и моторов;</li>
+                                        <li>развитие логического мышления и креативности.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level-card flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="level-icon">🟢</div>
+                                    <div class="level-name">Middle</div>
+                                    <div class="level-age">3–4 года</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Middle</h4>
+                                    <p>Возраст: 3–4 классы</p>
+                                    <p>На уровне Middle ученики начинают работать с LEGO Education SPIKE Prime. Они изучают более сложные механизмы, осваивают программирование и учатся создавать автономных роботов для выполнения различных задач.</p>
+                                    <p>Изучаем:</p>
+                                    <ul>
+                                        <li>конструирование роботов;</li>
+                                        <li>основы инженерного проектирования;</li>
+                                        <li>программирование роботов;</li>
+                                        <li>работу датчиков и автоматизацию процессов.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level-card flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="level-icon">🟡</div>
+                                    <div class="level-name">Master</div>
+                                    <div class="level-age">5–7 лет</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Master</h4>
+                                    <p>Возраст: 5–7 классы</p>
+                                    <p>Уровень Master направлен на углубленное изучение робототехники с использованием платформы SPIKE Prime. Ученики создают сложные проекты, участвуют в соревнованиях и решают инженерные задачи, приближенные к реальным условиям.</p>
+                                    <p>Изучаем:</p>
+                                    <ul>
+                                        <li>продвинутое программирование;</li>
+                                        <li>инженерные расчеты и проектирование;</li>
+                                        <li>автономные роботизированные системы;</li>
+                                        <li>подготовку к соревнованиям и конкурсам.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level-card flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <div class="level-icon">🔴</div>
+                                    <div class="level-name">Expert</div>
+                                    <div class="level-age">8 лет +</div>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Expert</h4>
+                                    <p>Возраст: 8–10 классы</p>
+                                    <p>На высшем уровне ученики переходят к работе с Arduino и изучают современные технологии разработки электронных устройств. Они создают собственные проекты, работают с датчиками, микроконтроллерами и изучают основы Интернета
+                                        вещей (IoT).</p>
+                                    <p>Изучаем:</p>
+                                    <ul>
+                                        <li>программирование микроконтроллеров Arduino;</li>
+                                        <li>электронику и схемотехнику;</li>
+                                        <li>работу с датчиками и исполнительными устройствами;</li>
+                                        <li>создание собственных инженерных проектов;</li>
+                                        <li>основы автоматизации и IoT-технологий.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Дроны -->
+                <div class="track-card flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>🚁 Дроны</h3>
+                            <p class="track-desc-front">
+                                Направление дронов в SmartHub — это практические тренировки, пилотирование и подготовка к соревнованиям по дрон-футболу.
+                            </p>
+                            <button class="flip-button" type="button">Подробнее</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Направление «Управление дронами»</h3>
+                            <p>Направление дронов в SmartHub представляет собой систему практических тренировок, где ученики осваивают навыки пилотирования и готовятся к участию в соревнованиях по дрон-футболу.</p>
+                            <p>Обучение начинается с отборочного этапа, который длится первые три месяца. За это время дети знакомятся с устройством дронов, изучают правила безопасности и получают базовые навыки управления летательными аппаратами.</p>
+                            <p>Во время тренировок ученики:</p>
+                            <ul>
+                                <li>изучают основы пилотирования дронов;</li>
+                                <li>развивают скорость реакции и координацию движений;</li>
+                                <li>улучшают концентрацию внимания;</li>
+                                <li>учатся ориентироваться в пространстве;</li>
+                                <li>осваивают командное взаимодействие;</li>
+                                <li>готовятся к участию в соревнованиях по дрон-футболу.</li>
+                            </ul>
+                            <p>После прохождения отборочного этапа ученики, показавшие необходимый уровень подготовки, переходят к спортивным тренировкам и начинают выступать на соревнованиях различного уровня.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Дрон-футбол -->
+                <div class="track-card flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>⚽ Дрон-футбол</h3>
+                            <p class="track-desc-front">
+                                Современный технологический спорт, развивающий стратегию, скорость реакции и командную работу.
+                            </p>
+                            <button class="flip-button" type="button">Подробнее</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Дрон-футбол</h3>
+                            <p>Дрон-футбол — это современный технологический вид спорта, в котором команды управляют специальными дронами и выполняют игровые задачи в воздушном пространстве. Этот формат объединяет технологии, спорт, стратегическое мышление
+                                и командную работу.</p>
+                            <p>Тренировки проходят под руководством наставников в безопасных условиях с соблюдением всех требований техники безопасности. Используемая программа позволяет каждому ученику постепенно развивать навыки пилотирования и видеть
+                                свой прогресс от первых полётов до участия в соревнованиях.</p>
+                            <p>Что получает ученик:</p>
+                            <ul>
+                                <li>уверенные навыки управления дроном;</li>
+                                <li>развитие внимания, реакции и пространственного мышления;</li>
+                                <li>опыт командной работы;</li>
+                                <li>участие в спортивных и технологических соревнованиях;</li>
+                                <li>возможность представлять академию на турнирах по дрон-футболу.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Спортивная РВТ -->
+                <div class="track-card">
+                    <h3>🏆 Спортивная РВТ</h3>
+                    <p class="track-desc">
+                        Подготовка к соревнованиям по спортивной робототехнике — командные турниры, тактические задачи, программирование под соревновательный регламент. Наши ученики представляют Казахстан на мировых чемпионатах.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pricing-box">
+                <div>
+                    <p>Записаться на пробный урок</p>
+                    <p class="price">12 000 тг / 32 000 тг в месяц</p>
+                </div>
+                <a href="#contacts" class="btn btn-red">Записаться</a>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="report-grid">
-        <div class="report-card">
-          <div class="report-icon">🥇</div>
-          <h4>Призовые места</h4>
-          <div class="report-list">
-            <p>I место Robotek Grand Tournament Международный этап категория «Доставщик»</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» средняя школа</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Lego Line Following» младшая школа</p>
-          </div>
+    <!-- ═══ ДОСТИЖЕНИЯ ════════════════════════════════════════ -->
+    <section id="achievements" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">Достижения</h2>
+
+            <div class="year-report">
+                <div class="report-header">
+                    <span class="report-tag">Итоги за год</span>
+                    <h3>SmartHub в цифрах и победах</h3>
+                    <p>Яркий год для нашей академии: новые филиалы, сотни учеников и сильные результаты на международных и республиканских соревнованиях.</p>
+                </div>
+
+                <div class="report-cards">
+                    <div class="report-card report-card-large">
+                        <div class="report-icon">🏫</div>
+                        <h4>6 филиалов</h4>
+                        <p>Skillset, 84 школа, 17 школа, 97 школа, 66 школа, 101 школа</p>
+                    </div>
+                    <div class="report-card report-card-large">
+                        <div class="report-icon">🎓</div>
+                        <h4>300 учеников</h4>
+                        <p>Активная командная школа для детей и подростков по всей академии.</p>
+                    </div>
+                </div>
+
+                <div class="report-grid">
+                    <div class="report-card">
+                        <div class="report-icon">🥇</div>
+                        <h4>Призовые места</h4>
+                        <div class="report-list">
+                            <p>I место Robotek Grand Tournament Международный этап категория «Доставщик»</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» средняя школа</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Lego Line Following» младшая школа</p>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-icon">🌍</div>
+                        <h4>Региональный и республиканский этапы</h4>
+                        <div class="report-list">
+                            <p>II место Региональный этап World Robot Olympiad Robomission Elementary</p>
+                            <p>Astana Tech Cup</p>
+                            <p>Республиканский этап: 4 призовых места</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
+                            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» средняя школа</p>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <div class="report-icon">⚡</div>
+                        <h4>Награды и топ‑места</h4>
+                        <div class="report-list">
+                            <p>Vex IQ Energy Award младшая школа</p>
+                            <p>III место Robotek Grand Tournament Республиканский этап категория «Доставщик»</p>
+                            <p>JasSkills Drone Soccer Топ 5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="medal">🥇</div>
+                    <h4>Чемпионат мира — Турция</h4>
+                    <p>Золото в категории автономных роботов. Наши студенты обошли команды из 40 стран.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="medal">🥈</div>
+                    <h4>WRO — Южная Корея</h4>
+                    <p>Серебро на World Robot Olympiad в категории Future Engineers среди 90 команд.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="medal">🏅</div>
+                    <h4>Международный кубок — США</h4>
+                    <p>Топ-3 в соревнованиях First LEGO League Championship, Хьюстон.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="medal">🥉</div>
+                    <h4>EuroBot — Бельгия</h4>
+                    <p>Бронза в европейском чемпионате по автономной робототехнике.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="medal">🏆</div>
+                    <h4>Drone Racing — Сингапур</h4>
+                    <p>Первое место Казахстана на международных гонках дронов Asia Pacific.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="medal">🎖️</div>
+                    <h4>RoboCup — Нидерланды</h4>
+                    <p>Финалисты RoboCup Junior в категории Rescue Maze, Эйндховен.</p>
+                </div>
+            </div>
         </div>
-        <div class="report-card">
-          <div class="report-icon">🌍</div>
-          <h4>Региональный и республиканский этапы</h4>
-          <div class="report-list">
-            <p>II место Региональный этап World Robot Olympiad Robomission Elementary</p>
-            <p>Astana Tech Cup</p>
-            <p>Республиканский этап: 4 призовых места</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» младшая школа</p>
-            <p>II место Fibonacci International Robotics Olympiad категория «Autonomous Car Racing» средняя школа</p>
-          </div>
+    </section>
+
+    <!-- ═══ ОТЗЫВЫ ════════════════════════════════════════════ -->
+    <section id="reviews" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">Отзывы</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <span class="quote-mark">"</span>
+                    <div class="stars">★★★★★</div>
+                    <p>Мой сын занимается уже 2 года — вырос от новичка до чемпиона республики. Педагоги невероятно преданы своему делу. SmartHub изменил нашу жизнь!</p>
+                    <div class="reviewer">— Айгуль М., мама ученика</div>
+                </div>
+                <div class="review-card">
+                    <span class="quote-mark">"</span>
+                    <div class="stars">★★★★★</div>
+                    <p>Дочь участвовала в турнире в Турции — это незабываемый опыт. Команда SmartHub сопровождает детей на каждом шагу, от обучения до победы.</p>
+                    <div class="reviewer">— Нурлан К., папа ученицы</div>
+                </div>
+                <div class="review-card">
+                    <span class="quote-mark">"</span>
+                    <div class="stars">★★★★★</div>
+                    <p>Лучшая инвестиция в будущее ребёнка. После SmartHub сын поступил в технический университет с грантом. Спасибо академии за знания и характер!</p>
+                    <div class="reviewer">— Зарина Б., мама выпускника</div>
+                </div>
+            </div>
         </div>
-        <div class="report-card">
-          <div class="report-icon">⚡</div>
-          <h4>Награды и топ‑места</h4>
-          <div class="report-list">
-            <p>Vex IQ Energy Award младшая школа</p>
-            <p>III место Robotek Grand Tournament Республиканский этап категория «Доставщик»</p>
-            <p>JasSkills Drone Soccer Топ 5</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="achievements-grid">
-      <div class="achievement-card">
-        <div class="medal">🥇</div>
-        <h4>Чемпионат мира — Турция</h4>
-        <p>Золото в категории автономных роботов. Наши студенты обошли команды из 40 стран.</p>
-      </div>
-      <div class="achievement-card">
-        <div class="medal">🥈</div>
-        <h4>WRO — Южная Корея</h4>
-        <p>Серебро на World Robot Olympiad в категории Future Engineers среди 90 команд.</p>
-      </div>
-      <div class="achievement-card">
-        <div class="medal">🏅</div>
-        <h4>Международный кубок — США</h4>
-        <p>Топ-3 в соревнованиях First LEGO League Championship, Хьюстон.</p>
-      </div>
-      <div class="achievement-card">
-        <div class="medal">🥉</div>
-        <h4>EuroBot — Бельгия</h4>
-        <p>Бронза в европейском чемпионате по автономной робототехнике.</p>
-      </div>
-      <div class="achievement-card">
-        <div class="medal">🏆</div>
-        <h4>Drone Racing — Сингапур</h4>
-        <p>Первое место Казахстана на международных гонках дронов Asia Pacific.</p>
-      </div>
-      <div class="achievement-card">
-        <div class="medal">🎖️</div>
-        <h4>RoboCup — Нидерланды</h4>
-        <p>Финалисты RoboCup Junior в категории Rescue Maze, Эйндховен.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- ═══ КОНТАКТЫ ══════════════════════════════════════════ -->
+    <section id="contacts" class="gear-bg">
+        <div class="section-inner">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-layout">
 
-<!-- ═══ ОТЗЫВЫ ════════════════════════════════════════════ -->
-<section id="reviews" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">Отзывы</h2>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <span class="quote-mark">"</span>
-        <div class="stars">★★★★★</div>
-        <p>Мой сын занимается уже 2 года — вырос от новичка до чемпиона республики.
-           Педагоги невероятно преданы своему делу. SmartHub изменил нашу жизнь!</p>
-        <div class="reviewer">— Айгуль М., мама ученика</div>
-      </div>
-      <div class="review-card">
-        <span class="quote-mark">"</span>
-        <div class="stars">★★★★★</div>
-        <p>Дочь участвовала в турнире в Турции — это незабываемый опыт.
-           Команда SmartHub сопровождает детей на каждом шагу, от обучения до победы.</p>
-        <div class="reviewer">— Нурлан К., папа ученицы</div>
-      </div>
-      <div class="review-card">
-        <span class="quote-mark">"</span>
-        <div class="stars">★★★★★</div>
-        <p>Лучшая инвестиция в будущее ребёнка. После SmartHub сын поступил в
-           технический университет с грантом. Спасибо академии за знания и характер!</p>
-        <div class="reviewer">— Зарина Б., мама выпускника</div>
-      </div>
-    </div>
-  </div>
-</section>
+                <div class="locations">
+                    <h3>Наши филиалы</h3>
 
-<!-- ═══ КОНТАКТЫ ══════════════════════════════════════════ -->
-<section id="contacts" class="gear-bg">
-  <div class="section-inner">
-    <h2 class="section-title">Контакты</h2>
-    <div class="contacts-layout">
+                    <div class="location-item">
+                        <div class="location-icon">📍</div>
+                        <div>
+                            <h4>Алматы</h4>
+                            <p>ул. Абая 10, БЦ «Атлас», офис 305</p>
+                            <p>+7 (727) 000-00-01</p>
+                        </div>
+                    </div>
 
-      <div class="locations">
-        <h3>Наши филиалы</h3>
+                    <div class="location-item">
+                        <div class="location-icon">📍</div>
+                        <div>
+                            <h4>Астана</h4>
+                            <p>пр. Республики 21, ТРЦ «Мега», 2 этаж</p>
+                            <p>+7 (717) 000-00-02</p>
+                        </div>
+                    </div>
 
-        <div class="location-item">
-          <div class="location-icon">📍</div>
-          <div>
-            <h4>Алматы</h4>
-            <p>ул. Абая 10, БЦ «Атлас», офис 305</p>
-            <p>+7 (727) 000-00-01</p>
-          </div>
-        </div>
+                    <div class="location-item">
+                        <div class="location-icon">📍</div>
+                        <div>
+                            <h4>Баку</h4>
+                            <p>ул. Низами 55, Технопарк «Innovation Hub»</p>
+                            <p>+994 (12) 000-00-03</p>
+                        </div>
+                    </div>
 
-        <div class="location-item">
-          <div class="location-icon">📍</div>
-          <div>
-            <h4>Астана</h4>
-            <p>пр. Республики 21, ТРЦ «Мега», 2 этаж</p>
-            <p>+7 (717) 000-00-02</p>
-          </div>
-        </div>
+                    <div class="location-item">
+                        <div class="location-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@smarthub.kz</p>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="location-item">
-          <div class="location-icon">📍</div>
-          <div>
-            <h4>Баку</h4>
-            <p>ул. Низами 55, Технопарк «Innovation Hub»</p>
-            <p>+994 (12) 000-00-03</p>
-          </div>
-        </div>
-
-        <div class="location-item">
-          <div class="location-icon">✉️</div>
-          <div>
-            <h4>Email</h4>
-            <p>info@smarthub.kz</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h3 style="font-size:1.1rem;font-weight:900;color:var(--blue);margin-bottom:18px;">Записаться на пробный урок</h3>
-        <form id="contactForm" class="contact-form">
-          <input type="text" name="name" placeholder="Ваше имя" required />
-          <input type="tel" name="phone" placeholder="Номер телефона" required />
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <input type="number" name="age" placeholder="Возраст" required />
-            <select name="direction" required style="padding:12px;border:1px solid #ddd;border-radius:8px;font-size:1rem;font-family:inherit;">
+                <div>
+                    <h3 style="font-size:1.1rem;font-weight:900;color:var(--blue);margin-bottom:18px;">Записаться на пробный урок</h3>
+                    <form id="contactForm" class="contact-form">
+                        <input type="text" name="name" placeholder="Ваше имя" required />
+                        <input type="tel" name="phone" placeholder="Номер телефона" required />
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                            <input type="number" name="age" placeholder="Возраст" required />
+                            <select name="direction" required style="padding:12px;border:1px solid #ddd;border-radius:8px;font-size:1rem;font-family:inherit;">
               <option value="" disabled selected>Выберите направление</option>
               <option value="дроны">Дроны</option>
               <option value="робототехника">Робототехника</option>
               <option value="лагеря">Лагеря</option>
             </select>
-          </div>
-          <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
-          <button type="submit" class="btn btn-red">Отправить заявку</button>
-        </form>
-      </div>
+                        </div>
+                        <textarea name="message" placeholder="Ваше сообщение (необязательно)"></textarea>
+                        <button type="submit" class="btn btn-red">Отправить заявку</button>
+                    </form>
+                </div>
 
-    </div>
-  </div>
-</section>
+            </div>
+        </div>
+    </section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════════ -->
-<footer>
-  <p>© 2024 <span>SmartHub</span> — Robotics &amp; Drone Academy. Казахстан.</p>
-</footer>
+    <!-- ═══ FOOTER ════════════════════════════════════════════ -->
+    <footer>
+        <p>© 2024 <span>SmartHub</span> — Robotics &amp; Drone Academy. Казахстан.</p>
+    </footer>
 
-<script src="script.js?v=3"></script>
+    <script src="script.js?v=3"></script>
 </body>
-</html>
 
+</html>
