@@ -635,6 +635,10 @@ body.dark nav {
     padding: 0;
 }
 
+.flip-card-inner {
+    height: 100%;
+}
+
 .flip-card-front {
     background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
     padding: 24px 22px;
@@ -722,6 +726,10 @@ body.dark nav {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 24px;
     margin-bottom: 40px;
+}
+
+.curriculum-grid>.track-card.flip-card {
+    align-self: start;
 }
 
 .track-card {
@@ -839,6 +847,15 @@ body.dark nav {
 .pricing-box .price {
     font-size: 1.2rem;
     color: var(--red);
+}
+
+.pricing-note {
+    margin-top: 8px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #6b1d1d;
+    max-width: 320px;
+    line-height: 1.4;
 }
 
 
