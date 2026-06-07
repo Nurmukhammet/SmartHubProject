@@ -673,6 +673,13 @@ body.dark nav {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.flip-hint {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #7a2f2f;
+    opacity: 0.85;
+}
+
 .flip-card-back {
     background: linear-gradient(180deg, #fdf1f1 0%, #fff8f8 100%);
     padding: 30px 28px;
