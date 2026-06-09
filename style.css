@@ -33,6 +33,7 @@ body.dark {
     --input-bg: #2a2a2a;
     --footer-bg: #111111;
     --text-muted: #aaa;
+    --blue: #8ea2ff;
 }
 
 html {
@@ -283,6 +284,22 @@ section {
     justify-content: center;
     text-align: center;
     background-color: var(--light-bg);
+    /* Фоновое фото команды + затемнение, чтобы текст читался.
+       Радиальный слой дополнительно притемняет центр под текстом. */
+    background-image:
+        radial-gradient(ellipse 70% 60% at center, rgba(8, 8, 14, 0.62) 0%, rgba(8, 8, 14, 0.3) 100%),
+        linear-gradient(rgba(10, 10, 16, 0.55), rgba(10, 10, 16, 0.72)),
+        url('hero-bg.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* На фото скрываем декоративные шестерёнки — чтобы не было лишнего шума */
+#home.gear-bg::before,
+#home.gear-bg::after {
+    display: none;
 }
 
 #home .section-inner {
@@ -297,17 +314,36 @@ section {
     color: var(--red);
     line-height: 1;
     margin-bottom: 20px;
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.12), 6px 6px 0px rgba(0, 0, 0, 0.06), 0 0 40px rgba(204, 0, 0, 0.20);
-    -webkit-text-stroke: 1px rgba(120, 0, 0, 0.15);
+    text-shadow:
+        0 0 3px rgba(0, 0, 0, 0.9),
+        0 3px 14px rgba(0, 0, 0, 0.85),
+        2px 2px 0 rgba(0, 0, 0, 0.55),
+        0 0 55px rgba(0, 0, 0, 0.6);
+    -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.45);
+    paint-order: stroke fill;
 }
 
 #home .hero-sub {
     font-family: 'Inter', sans-serif;
     font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    font-weight: 600;
-    color: var(--blue);
+    font-weight: 700;
+    color: #ffffff;
     margin-bottom: 40px;
     letter-spacing: 0.01em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75), 0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Кнопка «О нас» всегда белая и заметная на тёмном фото (в любой теме) */
+#home .btn-white {
+    background: #ffffff;
+    color: #161616;
+    padding: 15px 46px;
+    font-size: 1.05rem;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+}
+
+#home .btn-white:hover {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
 }
 
 .btn {
@@ -342,6 +378,11 @@ section {
 
 body.dark .flag-card,
 body.dark .achievement-card {
+    background: var(--card-bg);
+}
+
+body.dark .flag-card.flip-card .flip-card-front,
+body.dark .flag-card.flip-card .flip-card-back {
     background: var(--card-bg);
 }
 
@@ -412,6 +453,46 @@ body.dark .advantage-item h4 {
 
 body.dark nav {
     background: var(--nav-bg);
+}
+
+/* ── Переворачивающиеся карточки: тёмные фоны вместо белых ── */
+body.dark .flip-card-front,
+body.dark .about-billboards .flip-card-front {
+    background: var(--card-bg);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+body.dark .flip-card-back,
+body.dark .about-billboards .flip-card-back {
+    background: linear-gradient(180deg, #2c2424 0%, #241e1e 100%);
+}
+
+body.dark .billboard-caption,
+body.dark .track-desc-front,
+body.dark .flip-card-back p,
+body.dark .flip-card-back h4,
+body.dark .flip-card-back li {
+    color: #cfcfcf;
+}
+
+body.dark .flip-hint {
+    color: #ee99aa;
+}
+
+/* ── «Итоги за год» ── */
+body.dark .year-report {
+    background: linear-gradient(180deg, #211b1b 0%, #1c1717 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .report-header p,
+body.dark .report-card p,
+body.dark .report-list p {
+    color: #b5b5b5;
+}
+
+body.dark .level-age {
+    color: #bbb;
 }
 
 
@@ -560,13 +641,73 @@ body.dark nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     box-shadow: var(--shadow);
     transition: transform .15s;
+    min-height: 150px;
 }
 
-.flag-card:hover {
+.flag-card:not(.flip-card):hover {
     transform: translateY(-4px);
+}
+
+/* ── Флаги-достижения: переворот (лицо — флаг, оборот — достижение) ── */
+.flag-card.flip-card {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+}
+
+.flag-card.flip-card .flip-card-inner {
+    min-height: 150px;
+    height: 100%;
+    border-radius: 14px;
+}
+
+.flag-card.flip-card .flip-card-front {
+    background: var(--white);
+    border: none;
+    border-radius: 14px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+}
+
+.flag-card.flip-card .flip-card-back {
+    border-radius: 14px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.flag-card.flip-card .flip-card-back h4 {
+    font-size: 0.82rem;
+    color: var(--red);
+    margin-bottom: 6px;
+    line-height: 1.25;
+}
+
+.flag-card.flip-card .flip-card-back p {
+    font-size: 0.72rem;
+    color: var(--dark);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Маленькая медалька — подсказка, что у карточки есть достижение на обороте */
+.flag-medal {
+    font-size: 0.85rem;
+    line-height: 1;
+    opacity: 0.9;
 }
 
 .flag-card .flag-img {
@@ -605,18 +746,27 @@ body.dark nav {
     cursor: pointer;
 }
 
-.flip-card-inner {
+.about-billboards .flip-card-inner {
     position: relative;
     width: 100%;
-    min-height: 360px;
+    min-height: 440px;
     border-radius: 26px;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
+    /* НЕ ставим overflow:hidden — он «сплющивает» 3D и текст показывается
+       зеркально. Скругление углов берут на себя сами стороны карточки. */
 }
 
-.flip-card:hover .flip-card-inner,
+/* Переворот по наведению — только на устройствах с мышью (десктоп) */
+@media (hover: hover) {
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Переворот по тапу/клику — работает везде, главное на телефоне */
 .flip-card.flipped .flip-card-inner {
     transform: rotateY(180deg);
 }
@@ -627,6 +777,13 @@ body.dark nav {
     inset: 0;
     border-radius: 26px;
     backface-visibility: hidden;
+    overflow: hidden;
+}
+
+/* Длинный текст на обороте прокручивается внутри карточки, а не вылезает наружу */
+.flip-card-back {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .track-card.flip-card {
@@ -635,17 +792,33 @@ body.dark nav {
     padding: 0;
 }
 
+/* Базовый 3D-контейнер для ВСЕХ переворачивающихся карточек.
+   Важно: без overflow — иначе 3D «сплющивается» и текст становится зеркальным. */
 .flip-card-inner {
     height: 100%;
+    position: relative;
+    width: 100%;
+    border-radius: 26px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.flip-card-front {
+.about-billboards .flip-card-front {
     background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
-    padding: 24px 22px;
+    padding: 30px 26px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
     gap: 14px;
+    overflow: hidden;
+}
+
+/* Красная «полоска»-чип всегда видна целиком */
+.about-billboards .billboard-chip {
+    flex: 0 0 auto;
+    align-self: flex-start;
+    max-width: 100%;
 }
 
 .track-desc-front {
@@ -680,11 +853,12 @@ body.dark nav {
     opacity: 0.85;
 }
 
-.flip-card-back {
+.about-billboards .flip-card-back {
     background: linear-gradient(180deg, #fdf1f1 0%, #fff8f8 100%);
-    padding: 30px 28px;
+    padding: 28px 26px;
     transform: rotateY(180deg);
-    overflow: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .billboard-chip {
@@ -730,13 +904,21 @@ body.dark nav {
 
 .curriculum-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
     gap: 24px;
     margin-bottom: 40px;
 }
 
-.curriculum-grid>.track-card.flip-card {
-    align-self: start;
+/* Правая колонка: три направления друг под другом, ровным столбцом */
+.directions-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.directions-column>.track-card.flip-card {
+    align-self: stretch;
 }
 
 .track-card {
@@ -755,7 +937,7 @@ body.dark nav {
 
 .level-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: 1fr;
     gap: 12px;
 }
 
@@ -763,12 +945,23 @@ body.dark nav {
     min-height: 170px;
 }
 
-.flip-card-inner {
+.level-card .flip-card-inner {
     min-height: 170px;
+}
+
+/* Карточки-направления (Дроны, Дрон-футбол) — выше, чтобы лицевая сторона помещалась */
+.track-card.flip-card .flip-card-inner {
+    min-height: 320px;
 }
 
 .flip-card-front {
     border: 1px solid rgba(204, 0, 0, 0.12);
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
 }
 
 .level-icon {
@@ -796,6 +989,9 @@ body.dark nav {
 
 .flip-card-back {
     background: linear-gradient(180deg, #fff8f8 0%, #f9f0f0 100%);
+    padding: 22px 20px;
+    /* Оборот изначально повёрнут «лицом от нас» — иначе он перекрывал бы переднюю сторону */
+    transform: rotateY(180deg);
 }
 
 .flip-card-back h4 {
@@ -971,6 +1167,179 @@ body.dark nav {
     gap: 20px;
 }
 
+/* ─── ФОТОГАЛЕРЕЯ ДОСТИЖЕНИЙ ───────────────────────────── */
+.achievement-gallery {
+    margin-top: 40px;
+}
+
+.gallery-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+}
+
+.gallery-item {
+    position: relative;
+    margin: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.07);
+}
+
+.gallery-item figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 30px 16px 14px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.45) 55%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Лёгкий красный акцент-полоска сверху подписи в фирменном стиле */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid transparent;
+    border-radius: 18px;
+    transition: border-color .25s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover::after {
+    border-color: rgba(204, 0, 0, 0.65);
+}
+
+/* ─── ЛАЙТБОКС (просмотр фото на весь экран) ───────────── */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 8, 12, 0.92);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+    padding: 30px;
+}
+
+.lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: min(92vw, 1100px);
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 18px;
+    text-align: center;
+    max-width: 90vw;
+}
+
+.lightbox-close,
+.lightbox-nav {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+    background: var(--red);
+    border-color: var(--red);
+    transform: scale(1.08);
+}
+
+.lightbox-close {
+    top: 22px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev {
+    left: 24px;
+}
+
+.lightbox-next {
+    right: 24px;
+}
+
+@media (max-width: 640px) {
+    .lightbox-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 1.5rem;
+    }
+    .lightbox-prev {
+        left: 10px;
+    }
+    .lightbox-next {
+        right: 10px;
+    }
+}
+
 .achievements-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1009,13 +1378,100 @@ body.dark nav {
     background: var(--white);
 }
 
-.reviews-grid {
+/* ─── REVIEWS CAROUSEL ────────────────────────────────── */
+
+.reviews-carousel {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+}
+
+.reviews-viewport {
+    overflow: hidden;
+}
+
+.reviews-track {
+    display: flex;
     gap: 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 6px 4px 16px;
+    /* прячем нативный скроллбар, листаем стрелками/свайпом */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.reviews-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Стрелки навигации — в стиле интерфейса (красный акцент) */
+.rev-arrow {
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(204, 0, 0, 0.2);
+    background: var(--white);
+    color: var(--red);
+    font-size: 1.7rem;
+    line-height: 1;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+
+.rev-arrow:hover {
+    background: var(--red);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(204, 0, 0, 0.25);
+}
+
+.rev-arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+    background: var(--white);
+    color: var(--red);
+}
+
+/* Точки-индикаторы */
+.reviews-dots {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.reviews-dots button {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(204, 0, 0, 0.25);
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.reviews-dots button.active {
+    background: var(--red);
+    transform: scale(1.35);
 }
 
 .review-card {
+    flex: 0 0 calc((100% - 44px) / 3);
+    scroll-snap-align: start;
     background: var(--light-bg);
     border-radius: 14px;
     padding: 28px 22px;
@@ -1147,10 +1603,14 @@ footer span {
     .flags-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    .curriculum-grid,
-    .achievements-grid,
-    .reviews-grid {
+    .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .reviews-carousel .review-card {
+        flex-basis: calc((100% - 22px) / 2);
+    }
+    .curriculum-grid {
+        grid-template-columns: 1fr;
     }
     .contacts-layout {
         grid-template-columns: 1fr;
@@ -1205,15 +1665,20 @@ footer span {
         grid-template-columns: repeat(3, 1fr);
     }
     .curriculum-grid,
-    .achievements-grid,
-    .reviews-grid {
+    .achievements-grid {
         grid-template-columns: 1fr;
+    }
+    .reviews-carousel .review-card {
+        flex-basis: 100%;
     }
     .photos-grid {
         grid-template-columns: 1fr;
     }
     #home h1 {
         font-size: 3.5rem;
+    }
+    #home {
+        background-attachment: scroll;
     }
     .pricing-box {
         flex-direction: column;

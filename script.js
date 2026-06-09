@@ -31,11 +31,143 @@ const nav = document.querySelector('nav');
 burger.addEventListener('click', () => nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-// ── Переворачивающиеся билборды (клик/тап на мобильных) ──
-const flipCards = document.querySelectorAll('.flip-card');
-flipCards.forEach(card => {
-    card.addEventListener('click', () => card.classList.toggle('flipped'));
-});
+// ── Переворачивающиеся билборды ──
+// Десктоп (есть мышь) — переворот по наведению (CSS).
+// Телефон/планшет (нет наведения) — переворот по тапу.
+const isTouch = window.matchMedia('(hover: none)').matches;
+if (isTouch) {
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+}
+
+// ── Карусель отзывов (стрелки + точки + свайп) ────────────
+(function initReviews() {
+    const carousel = document.querySelector('.reviews-carousel');
+    if (!carousel) return;
+    const track = carousel.querySelector('.reviews-track');
+    const prev = carousel.querySelector('.rev-prev');
+    const next = carousel.querySelector('.rev-next');
+    const dotsWrap = carousel.querySelector('.reviews-dots');
+    const cards = Array.from(track.querySelectorAll('.review-card'));
+    if (!cards.length) return;
+
+    const styles = getComputedStyle(track);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 22;
+
+    const cardStep = () => cards[0].offsetWidth + gap;
+    const perView = () => Math.max(1, Math.round((track.clientWidth + gap) / cardStep()));
+    const pageCount = () => Math.max(1, Math.ceil(cards.length / perView()));
+    const pageWidth = () => cardStep() * perView();
+    const currentPage = () => Math.round(track.scrollLeft / pageWidth());
+
+    function scrollToPage(i) {
+        track.scrollTo({ left: i * pageWidth(), behavior: 'smooth' });
+    }
+
+    function buildDots() {
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i < pageCount(); i++) {
+            const b = document.createElement('button');
+            b.type = 'button';
+            b.setAttribute('aria-label', 'Отзывы, страница ' + (i + 1));
+            b.addEventListener('click', () => scrollToPage(i));
+            dotsWrap.appendChild(b);
+        }
+    }
+
+    function update() {
+        const page = currentPage();
+        Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === page));
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    }
+
+    prev.addEventListener('click', () => scrollToPage(Math.max(0, currentPage() - 1)));
+    next.addEventListener('click', () => scrollToPage(Math.min(pageCount() - 1, currentPage() + 1)));
+
+    let raf;
+    track.addEventListener('scroll', () => {
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => { buildDots(); update(); }, 150);
+    });
+
+    buildDots();
+    update();
+})();
+
+// ── Лайтбокс для фотогалереи достижений ───────────────────
+(function initLightbox() {
+    const items = Array.from(document.querySelectorAll('.gallery-item'));
+    if (!items.length) return;
+
+    const slides = items.map(fig => ({
+        src: fig.querySelector('img').getAttribute('src'),
+        caption: (fig.querySelector('figcaption') || {}).textContent || '',
+    }));
+
+    // создаём оверлей один раз
+    const box = document.createElement('div');
+    box.className = 'lightbox';
+    box.innerHTML =
+        '<button class="lightbox-close" aria-label="Закрыть">×</button>' +
+        '<button class="lightbox-nav lightbox-prev" aria-label="Предыдущее">‹</button>' +
+        '<img alt="" />' +
+        '<button class="lightbox-nav lightbox-next" aria-label="Следующее">›</button>' +
+        '<div class="lightbox-caption"></div>';
+    document.body.appendChild(box);
+
+    const imgEl = box.querySelector('img');
+    const capEl = box.querySelector('.lightbox-caption');
+    const btnClose = box.querySelector('.lightbox-close');
+    const btnPrev = box.querySelector('.lightbox-prev');
+    const btnNext = box.querySelector('.lightbox-next');
+    let current = 0;
+
+    function show(i) {
+        current = (i + slides.length) % slides.length;
+        imgEl.src = slides[current].src;
+        imgEl.alt = slides[current].caption;
+        capEl.textContent = slides[current].caption;
+    }
+
+    function open(i) {
+        show(i);
+        box.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        box.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    items.forEach((fig, i) => {
+        fig.addEventListener('click', () => open(i));
+    });
+
+    btnClose.addEventListener('click', close);
+    btnPrev.addEventListener('click', () => show(current - 1));
+    btnNext.addEventListener('click', () => show(current + 1));
+
+    // клик по тёмному фону (не по фото/кнопкам) закрывает
+    box.addEventListener('click', (e) => {
+        if (e.target === box) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (!box.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(current - 1);
+        else if (e.key === 'ArrowRight') show(current + 1);
+    });
+})();
 
 // ── Сохранение в localStorage ─────────────────────────────
 function saveToLocal(data) {
@@ -62,7 +194,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         phone: this.querySelector('[name="phone"]').value.trim(),
         age: this.querySelector('[name="age"]').value.trim(),
         direction: this.querySelector('[name="direction"]').value.trim(),
-        message: (this.querySelector('[name="message"]') || {}).value ? .trim() || '',
+        message: (this.querySelector('[name="message"]') || {}).value?.trim() || '',
     };
 
     if (!data.name) { toast('Укажите ваше имя', false);
