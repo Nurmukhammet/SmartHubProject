@@ -244,3 +244,130 @@ function toast(msg, ok) {
     clearTimeout(el._t);
     el._t = setTimeout(() => el.style.opacity = '0', 4500);
 }
+
+// ── Флаги-достижения открываются на весь экран по клику ──
+(function initFlagModal() {
+    const flags = document.querySelectorAll('.flag-card.flip-card');
+    if (!flags.length) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'flag-modal';
+    modal.innerHTML =
+        '<div class="flag-modal-box">' +
+        '<button class="flag-modal-close" aria-label="Закрыть">\u00d7</button>' +
+        '<img alt="" /><h3></h3><h4></h4><p></p></div>';
+    document.body.appendChild(modal);
+
+    const img = modal.querySelector('img');
+    const h3 = modal.querySelector('h3');
+    const h4 = modal.querySelector('h4');
+    const p  = modal.querySelector('p');
+
+    function open(card) {
+        const back = card.querySelector('.flip-card-back');
+        img.src = card.querySelector('.flag-img').src;
+        h3.textContent = card.querySelector('.flag-name').textContent;
+        h4.textContent = back && back.querySelector('h4') ? back.querySelector('h4').textContent : '';
+        p.textContent  = back && back.querySelector('p')  ? back.querySelector('p').textContent  : '';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function close() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    flags.forEach(card => card.addEventListener('click', () => open(card)));
+    modal.querySelector('.flag-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+})();
+
+
+// ── Карточки учебной программы открываются на весь экран по клику ──
+(function initCardModal() {
+    const cards = document.querySelectorAll('.level-card.flip-card, .track-card.flip-card');
+    if (!cards.length) return;
+
+    const modal = document.createElement('div');
+    modal.className = 'card-modal';
+    modal.innerHTML =
+        '<button class="card-modal-close" aria-label="Закрыть">\u00d7</button>' +
+        '<div class="card-modal-box"><div class="card-modal-body"></div></div>';
+    document.body.appendChild(modal);
+
+    const box = modal.querySelector('.card-modal-box');
+    const body = modal.querySelector('.card-modal-body');
+
+    function open(card) {
+        const back = card.querySelector('.flip-card-back');
+        body.innerHTML = back ? back.innerHTML : '';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        box.scrollTop = 0;
+    }
+    function close() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    cards.forEach(card => card.addEventListener('click', () => open(card)));
+    modal.querySelector('.card-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+})();
+
+
+// ── Карта филиалов: клик по филиалу показывает его на карте ──
+(function initBranchesMap() {
+    const frame = document.getElementById('branchesMap');
+    const btns = document.querySelectorAll('.branch-btn');
+    if (!frame || !btns.length) return;
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const q = encodeURIComponent(btn.dataset.q);
+            frame.src = 'https://www.google.com/maps?q=' + q + '&z=16&output=embed';
+        });
+    });
+})();
+
+
+// ── Маска телефона: +7 (XXX) XXX-XX-XX ──
+(function initPhoneMask() {
+    const phone = document.querySelector('#contactForm [name="phone"]');
+    if (!phone) return;
+
+    function format(value) {
+        let d = value.replace(/\D/g, '');
+        if (d.startsWith('8')) d = '7' + d.slice(1);
+        if (d && !d.startsWith('7')) d = '7' + d;
+        d = d.slice(0, 11);            // 7 + 10 цифр
+        const p = d.slice(1);          // цифры после кода страны
+        let r = '+7';
+        if (p.length) {
+            r += ' (' + p.substring(0, 3);
+            if (p.length >= 3) r += ') ';
+            if (p.length > 3)  r += p.substring(3, 6);
+            if (p.length > 6)  r += '-' + p.substring(6, 8);
+            if (p.length > 8)  r += '-' + p.substring(8, 10);
+        }
+        return r;
+    }
+
+    phone.addEventListener('focus', () => {
+        if (!phone.value) phone.value = '+7 (';
+    });
+    phone.addEventListener('input', () => {
+        phone.value = format(phone.value);
+    });
+    phone.addEventListener('blur', () => {
+        if (phone.value === '+7 (' || phone.value === '+7') phone.value = '';
+    });
+})();
