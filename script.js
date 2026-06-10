@@ -204,23 +204,31 @@ document.getElementById('contactForm').addEventListener('submit', async function
         btn.textContent = orig;
         btn.disabled = false; return; }
 
-    // Сначала всегда сохраняем локально — пользователь никогда не теряет заявку
-    saveToLocal({...data });
+    // Отправляем на сервер и ДОЖИДАЕМСЯ ответа — чтобы заявка точно попала в админку
+    let serverOk = false;
+    if (window.location.protocol !== 'file:') {
+        try {
+            const res = await fetch('/api/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            serverOk = res.ok;
+        } catch (_) {
+            serverOk = false;
+        }
+    }
 
-    // Показываем успех сразу, не ждём сервер
-    toast(`Спасибо, ${data.name}! Мы свяжемся с вами в ближайшее время.`, true);
+    if (serverOk) {
+        toast(`Спасибо, ${data.name}! Мы свяжемся с вами в ближайшее время.`, true);
+    } else {
+        // Сервер недоступен — сохраняем локально как резерв, чтобы заявка не потерялась
+        saveToLocal({ ...data });
+        toast(`Спасибо, ${data.name}! Заявка сохранена.`, true);
+    }
     this.reset();
     btn.textContent = orig;
     btn.disabled = false;
-
-    // Тихо пытаемся отправить на сервер в фоне (не блокирует UI)
-    if (window.location.protocol !== 'file:') {
-        fetch('/api/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        }).catch(() => { /* сервер недоступен — данные уже в localStorage */ });
-    }
 });
 
 // ── Toast уведомление ─────────────────────────────────────

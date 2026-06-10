@@ -31,7 +31,7 @@ function requireAdmin(req, res, next) {
 
 // ── API: Сохранить заявку ─────────────────────────────────
 app.post('/api/submit', (req, res) => {
-  const { name, phone, city, country, message } = req.body;
+  const { name, phone, age, direction, message } = req.body;
   if (!name || !name.trim()) return res.status(400).json({ error: 'Укажите имя' });
   if (!phone || !phone.trim()) return res.status(400).json({ error: 'Укажите телефон' });
 
@@ -41,8 +41,8 @@ app.post('/api/submit', (req, res) => {
     id: db.nextId++,
     name: name.trim(),
     phone: phone.trim(),
-    city: (city || '').trim(),
-    country: (country || '').trim(),
+    age: (age || '').toString().trim(),
+    direction: (direction || '').trim(),
     message: (message || '').trim(),
     created_at: now,
   };
@@ -72,13 +72,13 @@ app.get('/api/export', requireAdmin, (req, res) => {
     'ID':        r.id,
     'Имя':       r.name,
     'Телефон':   r.phone,
-    'Город':     r.city,
-    'Страна':    r.country,
+    'Возраст':   r.age,
+    'Направление': r.direction,
     'Сообщение': r.message,
     'Дата':      r.created_at,
   }));
 
-  const ws = XLSX.utils.json_to_sheet(data.length ? data : [{ 'ID':'','Имя':'','Телефон':'','Город':'','Страна':'','Сообщение':'','Дата':'' }]);
+  const ws = XLSX.utils.json_to_sheet(data.length ? data : [{ 'ID':'','Имя':'','Телефон':'','Возраст':'','Направление':'','Сообщение':'','Дата':'' }]);
   ws['!cols'] = [{ wch:6 },{ wch:22 },{ wch:18 },{ wch:16 },{ wch:16 },{ wch:40 },{ wch:22 }];
 
   const wb = XLSX.utils.book_new();

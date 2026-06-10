@@ -328,6 +328,13 @@
     if (e.key === 'Enter') doLogin();
   });
 
+  // ── Авто-обновление: новые заявки появляются сами каждые 5 секунд ──
+  setInterval(() => {
+    if (SERVER_MODE && adminKey && !document.getElementById('searchInput').value) {
+      fetchSubmissions();
+    }
+  }, 5000);
+
   // ── Загрузка из localStorage (режим без сервера) ──────
   function loadLocalSubmissions() {
     allRows = JSON.parse(localStorage.getItem('sh_submissions') || '[]');
