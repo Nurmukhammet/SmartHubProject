@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const ADMIN_KEY = 'smarthub2025';
 const DB_FILE = path.join(__dirname, 'submissions.json');
 
@@ -20,6 +20,15 @@ function saveDB(db) {
 }
 
 // ── Middleware ────────────────────────────────────────────
+// ── CORS: разрешаем приём заявок с любого устройства/домена ──
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, x-admin-key');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  if (req.method === 'OPTIONS') return res.sendStatus(200);
+  next();
+});
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 

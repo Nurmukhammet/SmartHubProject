@@ -1,5 +1,13 @@
 // ── Автоскролл наверх при загрузке страницы ──────────────
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
+
+// ════════════════════════════════════════════════════════════
+//  Адрес backend-сервера (куда уходят заявки).
+//  Пусто '' = тот же адрес, откуда открыт сайт (локальный сервер).
+//  Если сайт на хостинге, а сервер развёрнут отдельно — впишите его URL,
+//  например: const API_BASE = 'https://smarthub-xxxx.onrender.com';
+// ════════════════════════════════════════════════════════════
+const API_BASE = '';
 window.addEventListener('load', () => window.scrollTo({ top: 0, behavior: 'instant' }));
 
 // ── Тёмная тема ───────────────────────────────────────────
@@ -208,7 +216,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     let serverOk = false;
     if (window.location.protocol !== 'file:') {
         try {
-            const res = await fetch('/api/submit', {
+            const res = await fetch(API_BASE + '/api/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),

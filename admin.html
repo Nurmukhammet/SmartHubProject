@@ -288,6 +288,8 @@
 <script>
   const SERVER_MODE = window.location.protocol !== 'file:';
   const CORRECT_KEY = 'smarthub2025';
+  // Адрес сервера: '' = тот же origin; для отдельного хостинга впишите URL сервера
+  const API_BASE = '';
 
   // Показываем режим на экране логина
   document.getElementById('loginMode').textContent = SERVER_MODE
@@ -346,7 +348,7 @@
   // ── Загрузка с сервера ────────────────────────────────
   async function fetchSubmissions() {
     try {
-      const res = await fetch(`/api/submissions?key=${adminKey}`);
+      const res = await fetch(`${API_BASE}/api/submissions?key=${adminKey}`);
       if (!res.ok) return false;
       allRows = await res.json();
       renderTable(allRows);
@@ -412,7 +414,7 @@
 
     if (SERVER_MODE && adminKey) {
       try {
-        const res = await fetch(`/api/submissions/${id}?key=${adminKey}`, { method: 'DELETE' });
+        const res = await fetch(`${API_BASE}/api/submissions/${id}?key=${adminKey}`, { method: 'DELETE' });
         if (!res.ok) throw new Error();
       } catch { /* если сервер недоступен — всё равно удаляем локально */ }
     }
@@ -431,7 +433,7 @@
   function exportExcel() {
     if (SERVER_MODE && adminKey) {
       // Если сервер есть — скачиваем через API
-      window.location.href = `/api/export?key=${adminKey}`;
+      window.location.href = `${API_BASE}/api/export?key=${adminKey}`;
       return;
     }
     // Без сервера — генерируем Excel прямо в браузере через SheetJS
