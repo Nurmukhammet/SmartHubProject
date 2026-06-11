@@ -2044,3 +2044,22 @@ body.dark .lang-btn.active {
 @media (max-width: 1024px) {
     .lang-btn { padding: 5px 7px; font-size: 0.72rem; }
 }
+
+
+/* ── Логотип-картинка (светлая/тёмная версия) ── */
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo-img {
+    height: 62px;
+    width: auto;
+    display: block;
+}
+.logo-dark { display: none; }          /* по умолчанию (светлая тема) */
+body.dark .logo-light { display: none; }
+body.dark .logo-dark { display: block; }
+
+@media (max-width: 640px) {
+    .logo-img { height: 50px; }
+}
