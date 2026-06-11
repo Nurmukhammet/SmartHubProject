@@ -39,6 +39,13 @@ const fileStore = {
     db.rows = db.rows.filter(r => r.id !== Number(id));
     fileSave(db);
   },
+  async update(id, fields) {
+    const db = fileLoad();
+    const r = db.rows.find(x => x.id === Number(id));
+    if (r) Object.assign(r, fields);
+    fileSave(db);
+    return r;
+  },
 };
 
 // ── MongoDB хранилище ──
@@ -67,6 +74,10 @@ const mongoStore = {
   },
   async remove(id) {
     await col.deleteOne({ id: Number(id) });
+  },
+  async update(id, fields) {
+    await col.updateOne({ id: Number(id) }, { $set: fields });
+    return col.findOne({ id: Number(id) }, { projection: { _id: 0 } });
   },
 };
 
@@ -101,7 +112,7 @@ async function initMongo() {
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, x-admin-key');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   if (req.method === 'OPTIONS') return res.sendStatus(200);
   next();
 });
@@ -127,6 +138,7 @@ app.post('/api/submit', async (req, res) => {
       age: (age || '').toString().trim(),
       direction: (direction || '').trim(),
       message: (message || '').trim(),
+      payment: 'Не оплачено',
       created_at: new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Almaty' }),
     };
     const saved = await store.add(record);
@@ -149,6 +161,17 @@ app.delete('/api/submissions/:id', requireAdmin, async (req, res) => {
   catch (e) { res.status(500).json({ error: 'Ошибка сервера' }); }
 });
 
+// ── API: Обновить заявку — статус оплаты и др. (админ) ────
+app.patch('/api/submissions/:id', requireAdmin, async (req, res) => {
+  try {
+    const allowed = ['payment', 'status', 'name', 'phone', 'age', 'direction', 'message'];
+    const fields = {};
+    for (const k of allowed) if (k in req.body) fields[k] = (req.body[k] ?? '').toString();
+    await store.update(req.params.id, fields);
+    res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: 'Ошибка сервера' }); }
+});
+
 // ── API: Экспорт в Excel (админ) ──────────────────────────
 app.get('/api/export', requireAdmin, async (req, res) => {
   const rows = await store.all();
@@ -158,12 +181,13 @@ app.get('/api/export', requireAdmin, async (req, res) => {
     'Телефон':     r.phone,
     'Возраст':     r.age,
     'Направление': r.direction,
+    'Статус оплаты': r.payment || 'Не оплачено',
     'Сообщение':   r.message,
     'Дата':        r.created_at,
   }));
 
-  const ws = XLSX.utils.json_to_sheet(data.length ? data : [{ 'ID':'','Имя':'','Телефон':'','Возраст':'','Направление':'','Сообщение':'','Дата':'' }]);
-  ws['!cols'] = [{ wch:6 },{ wch:22 },{ wch:18 },{ wch:10 },{ wch:16 },{ wch:40 },{ wch:22 }];
+  const ws = XLSX.utils.json_to_sheet(data.length ? data : [{ 'ID':'','Имя':'','Телефон':'','Возраст':'','Направление':'','Статус оплаты':'','Сообщение':'','Дата':'' }]);
+  ws['!cols'] = [{ wch:6 },{ wch:22 },{ wch:18 },{ wch:10 },{ wch:16 },{ wch:16 },{ wch:40 },{ wch:22 }];
 
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Заявки SmartHub');
